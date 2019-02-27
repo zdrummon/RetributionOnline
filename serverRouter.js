@@ -28,7 +28,7 @@ module.exports = {
                 renderHTML('./index.html', response);
                 break;
             case '/testRoute':
-                console.log('routing to a testing subpage (also git test)');
+                console.log('routing to a testing subpage');
                 renderHTML('./testRoute.html', response);
                 break;
             default:
