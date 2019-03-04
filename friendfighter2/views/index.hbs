@@ -1,0 +1,14 @@
+<h1>{{ title }}</h1>
+<p>Welcome to {{ title }}</p>
+
+{{# if booleanTest }}
+    The thing is doing the thing
+{{ else }}
+    The thing is not doing the thing
+{{/if}}
+
+<br>
+
+{{# each cheeseArray as |val key|}}
+    {{ key }}: {{ val }} <br>
+{{/each}}
