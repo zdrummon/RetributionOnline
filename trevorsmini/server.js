@@ -1,1 +1,1 @@
-testing
+var http = request('http');
