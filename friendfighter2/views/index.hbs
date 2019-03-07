@@ -4,7 +4,7 @@
 {{# if booleanTest }}
     The thing is doing the thing
 {{ else }}
-    The thing is not doing the thing
+    The thing is not doing the thing because the variable is false
 {{/if}}
 
 <br>
@@ -13,4 +13,7 @@
     {{ key }}: {{ val }} <br>
 {{/each}}
 
-<a href="/test/5">click me to test the GET request</a>
+<form action="/test/submit" method="post">
+    <input type="text" name="id">
+    <button>Submit</button>
+</form>
