@@ -1,19 +1,36 @@
 <h1>{{ title }}</h1>
-<p>Welcome to {{ title }}</p>
+{{# if success }}
 
-{{# if booleanTest }}
-    The thing is doing the thing
+    <section class="success">
+        <h2>Successful validation!</h2>
+    </section>
+
 {{ else }}
-    The thing is not doing the thing because the variable is false
+
+    {{# if errors}}
+        <section class="errors">
+            <ul>
+                {{# each errors}}
+                    <li>{{ this.msg }}</li>
+                {{/each}}
+            </ul>
+        </section>
+    {{/if}}
+
+    <form action="/submit" method="post">
+        <div class="input">
+            <label for="email">E-Mail</label>
+            <input type="text" id="email" name="email">
+        </div>
+        <div class="input">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div class="input">
+            <label for="confirmPassword">Confirm Passowrd</label>
+            <input type="password" id="confirmPassword" name="confirmPassword"> 
+        </div>
+        <button type="submit">Sign Up</button>
+    </form>
+
 {{/if}}
-
-<br>
-
-{{# each cheeseArray as |val key|}}
-    {{ key }}: {{ val }} <br>
-{{/each}}
-
-<form action="/test/submit" method="post">
-    <input type="text" name="id">
-    <button>Submit</button>
-</form>
