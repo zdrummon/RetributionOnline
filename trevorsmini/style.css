@@ -1,0 +1,45 @@
+
+body{
+ font: 15px/1.5 georgia;
+ background: url(images/SCAN0011.png);
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-position: center;
+ color: #000000;
+ text-align: center;
+ font-size: 15px;
+ font-weight:bold;
+ white-space: wrap;
+ display: grid;
+ grid-template-columns: 2fr 6fr 2fr;
+ grid-template-rows: 1fr 8fr 1fr;
+ grid-gap:1em;
+ div:background: rgba(0, 0, 0, 0.6);
+}
+
+#linkDirectory{
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr;
+ grid-template-rows: 1fr 1fr 1fr ;
+ grid-gap:1em;
+ div:background: rgba(0, 0, 0, 0.6);	
+}
+#linkDirectory a{
+ color:#000000;
+ font-weight:bold;
+}
+#linkDirectory a:hover{
+ color:#22aa22;
+ font-weight:bold;
+}
+	
+#DElogo {	
+ text-align: center;
+ font-size: 30px;
+ font-weight:bold;
+ color: #000000;
+ background: url(images/daikon.png);
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-position: center;
+}
