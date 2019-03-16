@@ -23,14 +23,16 @@ module.exports = {
         switch (path) {
             case '/':
                 renderHTML('./index.html', response);
+                console.log ('root page sent to port 8000');
                 break;
             case '/constructionZone1':
                 renderHTML('./constructionZone1.html', response);
+                console.log('construction zone sent to port 8000')
                 break;
             default:
             response.writeHead(404)
             response.write('file not found')
+            response.end();
         }
-        
     }
 };
