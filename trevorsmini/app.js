@@ -1,38 +1,43 @@
-var url = require('url');
-var fs = require('fs');
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var hbs = require('express-handlebars')
 
-function renderHTML(path, response) {
-    fs.readFile(path, null, function(error,data){
-        if(error){
-            response.writeHead(404)
-            response.write('file not found')
-        } else {
-            response.write(data);
-        }
-        response.end();
-    });
-}
+var indexRouter = require('./routes/index');
 
 
+var app = express();
 
-module.exports = {
-    handleRequest: function(request, response){
-        response.writeHead(200, {'Content-Type':'text/html'});
-        
-        var path = url.parse(request.url).pathname;
-        switch (path) {
-            case '/':
-                renderHTML('./index.html', response);
-                console.log ('root page sent to port 8000');
-                break;
-            case '/constructionZone1':
-                renderHTML('./constructionZone1.html', response);
-                console.log('construction zone sent to port 8000')
-                break;
-            default:
-            response.writeHead(404)
-            response.write('file not found')
-            response.end();
-        }
-    }
-};
+// view engine setup
+app.engine('hbs',hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/veiws'}))
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
