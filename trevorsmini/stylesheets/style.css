@@ -14,15 +14,13 @@ body{
  grid-template-columns: 2fr 6fr 2fr;
  grid-template-rows: 1fr 8fr 1fr;
  grid-gap:1em;
- div:background: rgba(0, 0, 0, 0.6);
-}
 
+}
 #linkDirectory{
  display: grid;
  grid-template-columns: 1fr 1fr 1fr;
  grid-template-rows: 1fr 1fr 1fr ;
  grid-gap:1em;
- div:background: rgba(0, 0, 0, 0.6);	
 }
 #linkDirectory a{
  color:#000000;
