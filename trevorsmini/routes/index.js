@@ -6,9 +6,15 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'trevors mini' });
 });
 
-/* GET users listing. */
-router.get('/user', function(req, res, next) {
-  res.send('respond with a resource');
+
+router.get('/test/:id', function(req, res, next) {
+  res.render('test', {output: req.params.id})
 });
+
+
+router.post('/test/submit', function(req, res, next){
+  var id = req.body.id;
+  res.redirect('/test/' + id);
+})
 
 module.exports = router;

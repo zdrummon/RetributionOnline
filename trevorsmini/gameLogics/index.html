@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div style="display:none;">
+			<img id="dirtHex" width="64" height="64" src="dirtHex.png" alt="Dirt Hexagon tile">
+		</div>
+	
+		<p>this is where you would put the title of this stuff</p>
+	
+		<canvas id="myCanvas" width="800" height="600" style="border:1px solid #d3d3d3;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+	
+		<script>
+
+            var dX1 = 0;
+            var dY1 = 0;
+            var dXOffset = 25;
+            var dYOffset = 10;
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var dirtHexImg = document.getElementById("dirtHex");
+            
+
+			function drawHex(drawX1,drawY1) {
+				ctx.drawImage(dirtHexImg, drawX1, drawY1);
+                }
+
+
+
+
+            function updateScreen(){
+                for (i = 0; i < 45; i++) {
+                    dY1 = (i * 11) + dYOffset
+                    for (j = 0;  j < 8; j++){
+                        dX1 = j * 90 + ((i%2)*45) + dXOffset
+                        drawHex(dX1,dY1);
+                    }
+                }
+            }
+
+
+
+
+            window.onload = function() {
+            updateScreen();
+            }
+            
+            
+        
+	
+		</script>
+	</body>
+</html>
