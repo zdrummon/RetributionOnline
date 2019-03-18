@@ -12,6 +12,14 @@
         <form> 
             <input type="button" value="Turn HUD on">
         </form>
+
+        <div class="slidecontainer">
+                <input type="range" min="0" max="10" value="5" class="slider" id="sliderRangeA">
+        </div>
+        <div class="slidecontainer">
+                <input type="range" min="0" max="10" value="5" class="slider" id="sliderRangeB">
+        </div>
+
 		<canvas id="myCanvas" width="800" height="600" style="border:1px solid #d3d3d3;">
 			Your browser does not support the HTML5 canvas tag.
 		</canvas>
@@ -27,6 +35,9 @@
             button.addEventListener('click', updateScreen);
             var buttonState = false;
 
+            var sliderA = document.getElementById("sliderRangeA");
+            var sliderB = document.getElementById("sliderRangeB");
+
             var dX1 = 0;
             var dY1 = 0;
             var dXOffset = 25;
@@ -36,8 +47,13 @@
             var dirtHexImg = document.getElementById("dirtHex");
             var rockHexImg = document.getElementById("rockHex");
             var redHexOutlineImg = document.getElementById("redHexOutline");
+
             var mapArray = new Array(mapArrayLength);
             mapArray.fill(0);
+            var mapArrayBuffer = new Array(mapArrayLength);
+            mapArrayBuffer.fill(0);
+
+
 
             function indexToCoordinates(indexA){
                 var j = (indexA % mapMaxX)
@@ -63,6 +79,12 @@
  
                 updateScreen();
             }
+            sliderA.oninput = function() {
+                updateScreen();
+            } 
+            sliderB.oninput = function() {
+                updateScreen();
+            }
 
             function fillMapDataWithRandom(){
                 for (i = 0; i < mapMaxY; i++) {
@@ -76,6 +98,46 @@
 
 
 
+            function checkNeighborTiles(indexA){
+
+                var currentTileX = indexToCoordinates(indexA)[0];
+                var curentTileY = indexToCoordinates(indexA)[1];
+                var neighborValues = new Array(6);
+                neighborValues.fill(0);
+
+                
+                neighborValues[0] = mapArray[coordinatesToIndex(currentTileX - 1 , curentTileY - 1)]; //check northwest
+                neighborValues[1] = mapArray[coordinatesToIndex(currentTileX, curentTileY - 2)]; //check north
+                neighborValues[2] = mapArray[coordinatesToIndex(currentTileX + 1, curentTileY - 1)];//check north east
+
+
+                neighborValues[3] = mapArray[coordinatesToIndex(currentTileX + 1, curentTileY + 1)]; //check south east
+                neighborValues[4] = mapArray[coordinatesToIndex(currentTileX, curentTileY + 2)]; //check south
+                neighborValues[5] = mapArray[coordinatesToIndex(currentTileX - 1 , curentTileY + 1)]; //check southwest
+
+                return neighborValues;
+            }
+
+            function smoothMapData(loopNumber){
+                for (k = 0; k <= loopNumber; k++){
+                    for (i = 0; i < mapMaxY; i++) {
+                        for (j = 0;  j < mapMaxX; j++){
+                            var currentIndex = mapMaxX*(i) + j;
+                            mapArrayBuffer[currentIndex] =  Math.floor((checkNeighborTiles(currentIndex)[0] + checkNeighborTiles(currentIndex)[1] + checkNeighborTiles(currentIndex)[2] + checkNeighborTiles(currentIndex)[3] + checkNeighborTiles(currentIndex)[4] + checkNeighborTiles(currentIndex)[5])/6);
+                        }
+                    }
+                    for (i = 0; i < mapMaxY; i++) {
+                        for (j = 0;  j < mapMaxX; j++){
+                                var currentIndex = mapMaxX*(i) + j;
+                            if (mapArrayBuffer[currentIndex] >= 0){
+                            mapArray[currentIndex] = mapArrayBuffer[currentIndex];
+                            }
+                        }
+                    }
+                }
+            }
+
+
 			function drawDirtHex(drawX1,drawY1) {
 				ctx.drawImage(dirtHexImg, drawX1, drawY1);
                 }
@@ -87,9 +149,16 @@
                 }
             function drawLabeledHex(drawX1,drawY1,indexA){
                 drawRedHexOutline(drawX1,drawY1);
-                ctx.fillText('H# ' + indexA, drawX1+20, drawY1+32);
+                ctx.fillText('H#' + indexA + '=' + mapArray[indexA], drawX1+10, drawY1+32);
                 ctx.fillText(indexToCoordinates(indexA)[0]+ ', ' + indexToCoordinates(indexA)[1], drawX1+20, drawY1+42);
             }
+
+
+
+
+
+
+
 
             function updateScreen(){
                 ctx.clearRect(0, 0, 800, 600)
@@ -102,12 +171,12 @@
                         dX1 = j * 90 + ((i%2)*45) + dXOffset
                         var currentIndex = mapMaxX*(i) + j;
 
-                        if (mapArray[currentIndex] >= 5){
+                        if (mapArray[currentIndex] >= sliderA.value){
                             drawDirtHex(dX1,dY1);
                        
                         }
 
-                        else if ((mapArray[currentIndex] >= 3)){
+                        else if ((mapArray[currentIndex] >= sliderB.value)){
                             drawRockHex(dX1,dY1);
                             
                         }
@@ -122,6 +191,7 @@
 
             window.onload = function() {
                 fillMapDataWithRandom();
+                smoothMapData(3);               
                 updateScreen();
             }
             
