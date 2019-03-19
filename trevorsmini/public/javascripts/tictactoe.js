@@ -1,27 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body style="background-color:rgb(0,0,0);">
-
-        <div style="display:none;">
-                <img id="p1stamp" width="100" height="100" src="p1stamp.png" alt="player one's stamp">
-                <img id="p2stamp" width="100" height="100" src="p2stamp.png" alt="player two's stamp">
-                <img id="gridImg" width="300" height="300" src="grid.png" alt="tic tac toe board">
-                <img id="player1Victory" width="300" height="300" src="player1Victory.png" alt="player ones victory screen">
-                <img id="player2Victory" width="300" height="300" src="player2Victory.png" alt="player two's victory screen">
-                <img id="noVictory" width="300" height="300" src="noWin.png" alt="screen for the lack of a victory">
-        </div>
-        
-        <canvas id="myCanvas" width="300" height="300" style="border:1px solid #d3d3d3;" onclick="updateLogic(event)">
-                Your browser does not support the HTML5 canvas tag.
-        </canvas>  
-        <font color= "red">
-                <p id="displayCoordinates"></p>
-                <p id="turnDisplay"></p>
-        </font>
-        
-        <script>
-            
             // declare canvas variables
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
@@ -33,7 +9,7 @@
             var player2VictoryScreen = document.getElementById("player2Victory");
             var noVictoryScreen = document.getElementById("noVictory");
             
-            var stampingAudio = new Audio('362622kermite607stamp.mp3');
+            var stampingAudio = new Audio('audio/362622kermite607stamp.mp3');
             
             var tictactoeArray  = new Array(9);
             var turnCounter = 0;
@@ -165,9 +141,4 @@
                 var turnDisplay = "player 1's turn";
                 document.getElementById("turnDisplay").innerHTML = turnDisplay;
             }
-
-
-        </script>
-    </body>
-</html>
 

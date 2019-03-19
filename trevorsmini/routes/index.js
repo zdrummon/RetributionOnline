@@ -7,6 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.get('/tictactoe', function(req, res, next){
+  res.render('tictactoe', { title: 'tictactoe'})
+})
+
+
 router.get('/test/:id', function(req, res, next) {
   res.render('test', {output: req.params.id})
 });
