@@ -5,6 +5,7 @@
 		<div style="display:none;">
                 <img id="dirtHex" width="64" height="64" src="dirtHex.png" alt="Dirt Hexagon tile">
                 <img id="rockHex" width="64" height="64" src="rockHex.png" alt="Rock Hexagon tile">
+                <img id="rockHexWall" width="64" height="64" src="rockHexWall.png" alt="Rock Hexagon Wall tile">
                 <img id="redHexOutline" width="64" height="64" src="redHexOutline.png" alt="Glowing Red tile">
         </div>
 	
@@ -46,6 +47,7 @@
             var ctx = c.getContext("2d");
             var dirtHexImg = document.getElementById("dirtHex");
             var rockHexImg = document.getElementById("rockHex");
+            var rockHexWallImg = document.getElementById("rockHexWall");
             var redHexOutlineImg = document.getElementById("redHexOutline");
 
             var mapArray = new Array(mapArrayLength);
@@ -141,8 +143,11 @@
 			function drawDirtHex(drawX1,drawY1) {
 				ctx.drawImage(dirtHexImg, drawX1, drawY1);
                 }
-            function drawRockHex(drawX1,drawY1) {
+                function drawRockHex(drawX1,drawY1) {
 				ctx.drawImage(rockHexImg, drawX1, drawY1);
+                }
+                function drawRockHexWall(drawX1,drawY1) {
+				ctx.drawImage(rockHexWallImg, drawX1, drawY1-64);
                 }
             function drawRedHexOutline(drawX1,drawY1) {
 				ctx.drawImage(redHexOutlineImg, drawX1, drawY1);
@@ -180,7 +185,9 @@
                             drawRockHex(dX1,dY1);
                             
                         }
-                        else{}
+                        else{
+                            drawRockHexWall(dX1,dY1);
+                        }
                         
                         if (button.value === 'Turn HUD off') {
                             drawLabeledHex(dX1,dY1,currentIndex);
