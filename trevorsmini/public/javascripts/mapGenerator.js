@@ -8,7 +8,7 @@ const mapSizeY = 40;
 const maxOccupancy = 10;
 
 
-var spawmLocation = {
+var spawnLocation = {
     id,
     x,
     y,
@@ -40,11 +40,17 @@ var mapObject = {
 
     initMap : function(){
         mapArray.fill(hex);
-        spawnArray.fill(spawmLocation);
+        spawnArray.fill(spawnLocation);
         doorArray.fill(doorLocation);
+    },
+
+    randomizeMap : function(){
+        for (i = 0; i < mapSizeY; i++){
+            for(j = 0; j < mapSizeX; j++){
+
+            }
+        }
     }
-
-
 };
 
 
