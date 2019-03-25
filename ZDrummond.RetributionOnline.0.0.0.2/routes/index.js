@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
   req.session.success = null;
 });
 
-router.get('/caveExplorer002', function(req, res, next){
-  res.render('caveExplorer002', { title: 'caveExplorer001'})
+router.get('/retribution_online', function(req, res, next){
+  res.render('retribution_online', { title: 'Retribution Online'})
 })
 
 router.post('/submit', function(req, res, next) {
