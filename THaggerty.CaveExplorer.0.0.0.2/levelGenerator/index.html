@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<body style="background-color:rgb(0, 0, 0);">
+
+		<div style="display:none;">
+                <img id="dirtHex" width="64" height="64" src="dirtHex.png" alt="Dirt Hexagon tile">
+                <img id="rockHex" width="64" height="64" src="rockHex.png" alt="Rock Hexagon tile">
+                <img id="rockHexWall" width="64" height="64" src="rockHexWall.png" alt="Rock Hexagon Wall tile">
+                <img id="redHexOutline" width="64" height="64" src="redHexOutline.png" alt="Glowing Red tile">
+        </div>
+	
+        <p>Map generator prototype</p>
+        <form> 
+            <input type="button" value="Turn HUD on">
+        </form>
+
+        <div class="slidecontainer">
+                <input type="range" min="0" max="10" value="5" class="slider" id="sliderRangeA">
+        </div>
+        <div class="slidecontainer">
+                <input type="range" min="0" max="10" value="5" class="slider" id="sliderRangeB">
+        </div>
+
+		<canvas id="myCanvas" width="800" height="600" style="border:1px solid #d3d3d3;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+	
+		<script>
+
+            var mapMaxX = 8;
+            var mapMaxY = 45;
+            const mapArrayLength = mapMaxX * mapMaxY;
+
+            const button = document.querySelector('input');
+            button.addEventListener('click', updateButton);
+            button.addEventListener('click', updateScreen);
+            var buttonState = false;
+
+            var sliderA = document.getElementById("sliderRangeA");
+            var sliderB = document.getElementById("sliderRangeB");
+
+            var dX1 = 0;
+            var dY1 = 0;
+            var dXOffset = 25;
+            var dYOffset = 10;
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var dirtHexImg = document.getElementById("dirtHex");
+            var rockHexImg = document.getElementById("rockHex");
+            var rockHexWallImg = document.getElementById("rockHexWall");
+            var redHexOutlineImg = document.getElementById("redHexOutline");
+
+            var mapArray = new Array(mapArrayLength);
+            mapArray.fill(0);
+            var mapArrayBuffer = new Array(mapArrayLength);
+            mapArrayBuffer.fill(0);
+
+
+
+            function indexToCoordinates(indexA){
+                var j = (indexA % mapMaxX)
+                var i = (indexA - j) / mapMaxX
+                    j = j*2 + i%2;
+                return [j,i]
+            }
+
+
+            function coordinatesToIndex(hexX, hexY){
+                var indexA = (hexY * mapMaxX ) + (hexX - hexY%2)/2;
+                return indexA;
+            }
+
+
+
+            function updateButton() {
+                if (button.value === 'Turn HUD on') {
+                    button.value = 'Turn HUD off';
+                } else {
+                    button.value = 'Turn HUD on';
+                }
+ 
+                updateScreen();
+            }
+            sliderA.oninput = function() {
+                updateScreen();
+            } 
+            sliderB.oninput = function() {
+                updateScreen();
+            }
+
+            function fillMapDataWithRandom(){
+                for (i = 0; i < mapMaxY; i++) {
+                    for (j = 0;  j < mapMaxX; j++){
+                        var currentIndex = mapMaxX*(i) + j;
+                        var coinFlip = Math.floor((Math.random() * 10) + 1);
+                         mapArray[currentIndex] = coinFlip;
+                    }
+                }
+            }
+
+
+
+            function checkNeighborTiles(indexA){
+
+                var currentTileX = indexToCoordinates(indexA)[0];
+                var curentTileY = indexToCoordinates(indexA)[1];
+                var neighborValues = new Array(6);
+                neighborValues.fill(0);
+
+                
+                neighborValues[0] = mapArray[coordinatesToIndex(currentTileX - 1 , curentTileY - 1)]; //check northwest
+                neighborValues[1] = mapArray[coordinatesToIndex(currentTileX, curentTileY - 2)]; //check north
+                neighborValues[2] = mapArray[coordinatesToIndex(currentTileX + 1, curentTileY - 1)];//check north east
+
+
+                neighborValues[3] = mapArray[coordinatesToIndex(currentTileX + 1, curentTileY + 1)]; //check south east
+                neighborValues[4] = mapArray[coordinatesToIndex(currentTileX, curentTileY + 2)]; //check south
+                neighborValues[5] = mapArray[coordinatesToIndex(currentTileX - 1 , curentTileY + 1)]; //check southwest
+
+                return neighborValues;
+            }
+
+            function smoothMapData(loopNumber){
+                for (k = 0; k <= loopNumber; k++){
+                    for (i = 0; i < mapMaxY; i++) {
+                        for (j = 0;  j < mapMaxX; j++){
+                            var currentIndex = mapMaxX*(i) + j;
+                            mapArrayBuffer[currentIndex] =  Math.floor((checkNeighborTiles(currentIndex)[0] + checkNeighborTiles(currentIndex)[1] + checkNeighborTiles(currentIndex)[2] + checkNeighborTiles(currentIndex)[3] + checkNeighborTiles(currentIndex)[4] + checkNeighborTiles(currentIndex)[5])/6);
+                        }
+                    }
+                    for (i = 0; i < mapMaxY; i++) {
+                        for (j = 0;  j < mapMaxX; j++){
+                                var currentIndex = mapMaxX*(i) + j;
+                            if (mapArrayBuffer[currentIndex] >= 0){
+                            mapArray[currentIndex] = mapArrayBuffer[currentIndex];
+                            }
+                        }
+                    }
+                }
+            }
+
+
+			function drawDirtHex(drawX1,drawY1) {
+				ctx.drawImage(dirtHexImg, drawX1, drawY1);
+                }
+                function drawRockHex(drawX1,drawY1) {
+				ctx.drawImage(rockHexImg, drawX1, drawY1);
+                }
+                function drawRockHexWall(drawX1,drawY1) {
+				ctx.drawImage(rockHexWallImg, drawX1, drawY1-64);
+                }
+            function drawRedHexOutline(drawX1,drawY1) {
+				ctx.drawImage(redHexOutlineImg, drawX1, drawY1);
+                }
+            function drawLabeledHex(drawX1,drawY1,indexA){
+                drawRedHexOutline(drawX1,drawY1);
+                ctx.fillText('H#' + indexA + '=' + mapArray[indexA], drawX1+10, drawY1+32);
+                ctx.fillText(indexToCoordinates(indexA)[0]+ ', ' + indexToCoordinates(indexA)[1], drawX1+20, drawY1+42);
+            }
+
+
+
+
+
+
+
+
+            function updateScreen(){
+                ctx.clearRect(0, 0, 800, 600)
+                ctx.font = "10px Arial";
+                ctx.fillStyle = "red";                
+                for (i = 0; i < mapMaxY; i++) {
+                    dY1 = (i * 11) + dYOffset
+                    for (j = 0;  j < mapMaxX; j++){
+
+                        dX1 = j * 90 + ((i%2)*45) + dXOffset
+                        var currentIndex = mapMaxX*(i) + j;
+
+                        if (mapArray[currentIndex] >= sliderA.value){
+                            drawDirtHex(dX1,dY1);
+                       
+                        }
+
+                        else if ((mapArray[currentIndex] >= sliderB.value)){
+                            drawRockHex(dX1,dY1);
+                            
+                        }
+                        else{
+                            drawRockHexWall(dX1,dY1);
+                        }
+                        
+                        if (button.value === 'Turn HUD off') {
+                            drawLabeledHex(dX1,dY1,currentIndex);
+                        }
+                    }
+                }
+            }
+
+            window.onload = function() {
+                fillMapDataWithRandom();
+                smoothMapData(3);               
+                updateScreen();
+            }
+            
+            
+        
+	
+		</script>
+	</body>
+</html>
