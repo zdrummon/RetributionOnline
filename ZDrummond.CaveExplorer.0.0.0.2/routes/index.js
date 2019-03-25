@@ -1,37 +1,30 @@
 var express = require('express');
 var router = express.Router();
+//var mongo = e
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'trevors mini' });
+  res.render('index', {title: 'Form Validation', success: req.session.success, errors: req.session.errors});
+  req.session.errors = null;
+  req.session.success = null;
 });
 
-
-router.get('/tictactoe', function(req, res, next){
-  res.render('tictactoe', { title: 'tictactoe'})
+router.get('/caveExplorer002', function(req, res, next){
+  res.render('caveExplorer002', { title: 'caveExplorer001'})
 })
 
-router.get('/checkers', function(req, res, next){
-  res.render('checkers', { title: 'checkers'})
-})
+router.post('/submit', function(req, res, next) {
+  req.check('email', 'Invalid email address').isEmail();
+  req.check('password', 'Invalid password').isLength({min: 4}).equals(req.body.confirmPassword);
 
-router.get('/rasterizer', function(req, res, next){
-  res.render('rasterizer', { title: 'rasterizer'})
-})
-
-router.get('/caveExplorer001', function(req, res, next){
-  res.render('caveExplorer001', { title: 'caveExplorer001'})
-})
-
-
-router.get('/test/:id', function(req, res, next) {
-  res.render('test', {output: req.params.id})
+  var errors = req.validationErrors();
+  if (errors) {
+    req.session.errors = errors;
+    req.session.success = false;
+  } else {
+    req.session.success = true;
+  }
+  res.redirect('/');
 });
-
-
-router.post('/test/submit', function(req, res, next){
-  var id = req.body.id;
-  res.redirect('/test/' + id);
-})
 
 module.exports = router;

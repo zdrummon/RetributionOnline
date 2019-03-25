@@ -1,5 +1,5 @@
 {
-  "name": "trevorsmini",
+  "name": "friendfighter2",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,10 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-handlebars": "^3.0.2",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.3.1",
     "http-errors": "~1.6.2",
+    "mongodb": "^3.1.13",
     "morgan": "~1.9.0"
   }
 }
