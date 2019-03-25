@@ -15,6 +15,14 @@ router.get('/checkers', function(req, res, next){
   res.render('checkers', { title: 'checkers'})
 })
 
+router.get('/rasterizer', function(req, res, next){
+  res.render('rasterizer', { title: 'rasterizer'})
+})
+
+router.get('/caveExplorer001', function(req, res, next){
+  res.render('caveExplorer001', { title: 'caveExplorer001'})
+})
+
 
 router.get('/test/:id', function(req, res, next) {
   res.render('test', {output: req.params.id})
