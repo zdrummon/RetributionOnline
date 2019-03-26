@@ -2,15 +2,15 @@
 const maxInventory = 10;
 
 function mob(
+    x,
+    y,
+    z,
     isControllable,
     id,
     maxhealth,
     health,
     maxstamina,
-    stamina,
-    x,
-    y,
-    z,
+    stamina,  
     facing, // 0 is north, 1 is northeast, so on incrementing up clockwise
     statusFlags,
     inventory){
