@@ -1,6 +1,5 @@
 function game() {
 
-
     if(frameTimer()){
         updateScreen();
         updateGame();
