@@ -1,6 +1,8 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var testHex = document.getElementById("testHex");
+var dirtHex = document.getElementById("dirtHex");
+var dirtHex2 = document.getElementById("dirtHex2");
 var monkSprite = document.getElementById("monkSprite");
 
 canvas.width = window.innerWidth;
@@ -24,10 +26,17 @@ function setTo16x9() {
     }    
 }
 
-var drawScale = canvas.width / 7.5;
+var drawScale = canvas.width / 7.25;
 
-function drawHex(drawX, drawY) {
-    ctx.drawImage(testHex, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
+function drawHex(drawX, drawY, hexTexture) {
+    switch (hexTexture){
+        case 1:
+            ctx.drawImage(dirtHex, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
+            break;
+        case 2:
+            ctx.drawImage(dirtHex2, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
+            break;
+    }
 }
 
 function drawPlayer(drawX, drawY, facing, frameCount) {
@@ -35,7 +44,7 @@ function drawPlayer(drawX, drawY, facing, frameCount) {
     var frameWidth = 100;
     var frameHeight = 100;
     //what the hell is this scaling (is it the hexes or the guy?)
-    ctx.drawImage(monkSprite, frameWidth * frame, frameHeight * facing, frameWidth, frameHeight, drawX - drawScale / 2, drawY - drawScale / 2, drawScale, drawScale);
+    ctx.drawImage(monkSprite, frameWidth * frame, frameHeight * facing, frameWidth, frameHeight, drawX, drawY - drawScale / 4, drawScale, drawScale);// drawX, drawY - drawScale / 4, drawScale, drawScale);
 }
 
 function fillScreen(){
@@ -62,7 +71,7 @@ function printData(){
 var firstPass = true;
 
 function updateScreen() {
-    drawScale = canvas.width / 7.5;
+    drawScale = canvas.width / 7.25;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     setTo16x9();
@@ -70,22 +79,30 @@ function updateScreen() {
     fillScreen();
     for (i = 0; i < 11; i++) {
         for (j = 0;  j < 11; j++){
-            var dx = j * canvas.width / 9.5 - drawScale * 0.75;
-            var dy = i * canvas.height / 16;
+            var dx = j * canvas.width / 9.75 - drawScale * 0.675;
+            var dy = i * canvas.height / 16 + drawScale * 1.5;
             
             if (gameBoard[i][j] == 1) { 
                 if (j % 2 == 0){
                     dy = dy + canvas.height / 32;
                 }
-                drawHex(dx, dy);
+                drawHex(dx, dy, textureBoard[i][j]);
+
             } else if (gameBoard[i][j] == 2) {
+                if (j % 2 == 0){
+                    dy = dy + canvas.height / 32;
+                }
+                drawHex(dx, dy, textureBoard[i][j]);
                 drawPlayer(dx, dy, player.facing, frameCounter);
             }
             if (firstPass) {
+                
                 console.log("an object at " + j + " " + i + " will be drawn with its top left corner at " + dx + " " + dy);
             }
+            
             //printData();
-        }
+        } 
     }
     firstPass = false;
+   
 }
