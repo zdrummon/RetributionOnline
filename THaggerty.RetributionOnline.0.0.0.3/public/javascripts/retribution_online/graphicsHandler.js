@@ -3,6 +3,7 @@ var ctx = canvas.getContext("2d");
 var testHex = document.getElementById("testHex");
 var dirtHex = document.getElementById("dirtHex");
 var dirtHex2 = document.getElementById("dirtHex2");
+var stoneHex = document.getElementById("stoneHex");
 var monkSprite = document.getElementById("monkSprite");
 
 canvas.width = window.innerWidth;
@@ -36,7 +37,11 @@ function drawHex(drawX, drawY, hexTexture) {
         case 2:
             ctx.drawImage(dirtHex2, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
             break;
+        case 3:
+            ctx.drawImage(stoneHex, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
+            break;
     }
+    
 }
 
 function drawPlayer(drawX, drawY, facing, frameCount) {
@@ -56,15 +61,16 @@ function fillScreen(){
 }
 
 function printData(){
-    var dx = (j * canvas.width / 9) + canvas.width / 18;
-    var dy = (i * canvas.height / 9) + canvas.height / 18;
+    var dx = x * canvas.width / 9.75 - drawScale * 0.675;
+    var dy = y * canvas.height / 16 + drawScale * 1.5;
+            
     ctx.font = "10px Arial";
     ctx.fillStyle = "red"; 
-    if (j % 2 == 0){
-        ctx.fillText(j + ', ' + i, dx, dy+ canvas.height / 24);
+    if (x % 2 == 0){
+        ctx.fillText(x + ', ' + y, dx + drawScale/4 , dy  + drawScale/4 + canvas.height / 32);
     }
     else{
-        ctx.fillText(j + ', ' + i, dx, dy);
+        ctx.fillText(x + ', ' + y, dx + drawScale/4, dy  + drawScale/4);
     }
 }
 
@@ -77,27 +83,49 @@ function updateScreen() {
     setTo16x9();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     fillScreen();
-    for (i = 0; i < 11; i++) {
-        for (j = 0;  j < 11; j++){
-            var dx = j * canvas.width / 9.75 - drawScale * 0.675;
-            var dy = i * canvas.height / 16 + drawScale * 1.5;
-            
-            if (gameBoard[i][j] == 1) { 
-                if (j % 2 == 0){
+    for (y = 0; y < 11; y++) {
+        for (x = 0;  x < 11; x++){
+            var dx = x * canvas.width / 9.75 - drawScale * 0.675;
+            var dy = y * canvas.height / 16 + drawScale * 1.5;
+            if (x % 2 == 0){
                     dy = dy + canvas.height / 32;
-                }
-                drawHex(dx, dy, textureBoard[i][j]);
+            }
+            ctx.font = "10px Arial";
+            ctx.fillStyle = "red"; 
+            // draw visible tiles-------------------------------------------------------===
+            if (veiwport[y][x] >= 1) { 
+                
+                if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 20  && y + player.y <= 20 )){
+                    if(x % 2 == 0){
+                        if (player.x % 2 == 0){
+                        drawHex(dx, dy , gameBoard[x+player.x][y+player.y + 1]);
+                       // ctx.fillText((x) + ', ' + (y), dx + drawScale/4 , dy);
+                        }
+                        else{
+                        drawHex(dx, dy , gameBoard[x+player.x][y+player.y])
+                        //ctx.fillText((x) + ', ' + (y), dx + drawScale/4 , dy);
+                        }
+                    }
 
-            } else if (gameBoard[i][j] == 2) {
-                if (j % 2 == 0){
-                    dy = dy + canvas.height / 32;
+                    else{
+                        drawHex(dx, dy , gameBoard[x+player.x][y+player.y])
+                       // ctx.fillText((x+player.x) + ', ' + (y+player.y), dx + drawScale/4 , dy + drawScale/2);
+                       // ctx.fillText((x) + ', ' + (y), dx + drawScale/4 , dy);
+                    }
+
                 }
-                drawHex(dx, dy, textureBoard[i][j]);
+
+
+            } 
+
+            //-------------------------------------draw player--------
+            if (veiwport[x][y] == 2) {
                 drawPlayer(dx, dy, player.facing, frameCounter);
             }
+
+
             if (firstPass) {
-                
-                console.log("an object at " + j + " " + i + " will be drawn with its top left corner at " + dx + " " + dy);
+                console.log("an object at " + x + " " + y + " will be drawn with its top left corner at " + dx + " " + dy);
             }
             
             //printData();
