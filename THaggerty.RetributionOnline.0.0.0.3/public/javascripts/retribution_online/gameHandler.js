@@ -6,8 +6,7 @@ const hexDirections = {
     SOUTH:4,
     SOUTHWEST:5
 }
-
-var gameBoard = [
+var veiwport = [
     [0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,1,1,1,0,0,0,0],
     [0,0,1,1,1,1,1,1,1,0,0],
@@ -20,70 +19,108 @@ var gameBoard = [
     [0,0,0,0,0,1,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0]
  ] ;
- var textureBoard = [
-    [1,1,1,1,2,1,1,1,2,1,1],
-    [1,1,2,1,1,1,2,1,1,1,2],
-    [1,1,1,1,1,1,2,1,1,2,1],
-    [1,1,1,2,1,1,1,1,1,1,1],
-    [1,1,1,1,1,2,1,1,2,1,1],
-    [1,2,1,2,1,1,1,2,1,1,1],
-    [1,1,1,1,1,1,1,1,2,2,1],
-    [1,2,1,1,2,1,1,1,1,1,1],
-    [1,1,2,1,1,1,2,1,1,1,1],
-    [2,1,2,1,1,1,1,1,2,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1]
+ var gameBoard = [
+////<<<<<<<<<<<<<<<<<<----------------------y
+    [1,1,1,1,2,1,1,1,2,1,1,1,1,1,2,1,1,1,2,1,1],// x
+     [1,1,2,1,1,1,2,1,1,1,1,1,2,1,1,1,2,1,1,1,2],// |
+    [1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,2,1,1,2,1],// |
+     [1,1,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1],// |
+    [1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1],// |
+     [1,2,1,2,1,1,1,2,1,1,1,2,1,2,1,1,1,2,1,1,1],// |
+    [1,1,1,1,1,1,1,1,2,2,3,1,1,1,1,1,1,1,2,2,1],// |
+     [1,2,1,1,2,1,1,3,1,1,1,2,1,3,2,1,1,1,1,1,1],// |
+    [1,1,2,1,1,1,2,1,1,1,1,1,2,1,1,1,2,1,1,1,1],// |
+     [2,1,2,1,1,1,1,3,2,3,3,1,2,3,1,1,1,1,2,1,1],// |
+    [1,1,1,1,1,1,1,1,1,3,1,3,3,1,1,1,1,1,1,1,1],// |
+     [1,1,1,1,2,1,1,3,2,3,3,1,1,3,2,1,1,1,2,1,1],// |
+    [1,1,2,1,1,1,2,1,1,1,1,1,2,1,1,1,2,1,1,1,2],// |
+     [1,1,1,1,1,1,2,3,1,2,1,1,1,3,1,1,2,1,1,2,1],// |
+    [1,1,1,2,1,1,1,1,1,1,3,1,1,2,1,1,1,1,1,1,1],// |
+     [1,1,1,1,1,2,1,3,2,1,1,1,1,3,1,2,1,1,2,1,1],// |
+    [1,2,1,2,1,1,1,2,1,1,1,2,1,2,1,1,1,2,1,1,1],// |
+     [1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,2,2,1],// V
+    [1,2,1,1,2,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1],// V
+     [1,1,2,1,1,1,2,1,1,1,1,1,2,1,1,1,2,1,1,1,1],// V
+    [2,1,2,1,1,1,1,1,2,1,2,1,2,1,1,1,1,1,2,1,1],// V
+     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-var player = new mob(5,5,0,true,1,10,10,10,10,4,0,0);
+var player = new mob(5,5,3,true,1,10,10,10,10,4,3,0);
 
-//------------------------------------------------NORTHWEST moveGameBoard begun and not finished
-function moveGameBoard(moveDirection) {
+//-----------------------------------------movePlayer
+function movePlayer(moveDirection) {
+   
     if (moveDirection == hexDirections.NORTHWEST) {
-        console.log("going top left");
-        //temporarily setting i and j to 1 for testing
-        
+        if ( player.x % 2 == 0) {
+            player.x--;
+            player.y--;
+             }
+        else {
+            player.x--;
+            player.y--;
+        }       
     } else if (moveDirection == hexDirections.NORTH) {
-        
+        player.y--;
     } else if (moveDirection == hexDirections.NORTHEAST) {
+        if (player.x%2 == 0){
+            player.x++;
+           }else{
+            player.x++;
+            player.y--;
         
+        }
     } else if (moveDirection == hexDirections.SOUTHEAST) {
-        
+        if ( player.x % 2 == 0) {
+            player.x++;
+            player.y++;
+        }
+        else {
+            player.x++;
+        }
     } else if (moveDirection == hexDirections.SOUTH) {
-        
+        player.y++;
     } else if (moveDirection == hexDirections.SOUTHWEST) {
-    
+        if ( player.x % 2 == 0) {
+            player.x--;
+            player.y++
+        }
+        else {
+            player.x--;
+            ;
+        }
     }
+    console.log('player is at location ' + player.x + ', ' + player.y)
 }
 
 function updateGame() {
     if (NWbuttonState){
         player.facing = hexDirections.NORTHWEST;
-        moveGameBoard(hexDirections.NORTHWEST);
+        movePlayer(hexDirections.NORTHWEST);
         NWbuttonState = false;
     }
     if (NbuttonState){
         player.facing = hexDirections.NORTH;
-        moveGameBoard(hexDirections.NORTH);
+        movePlayer(hexDirections.NORTH);
         NWbuttonState = false;
     }
     if (NEbuttonState){
         player.facing = hexDirections.NORTHEAST;
-        moveGameBoard(hexDirections.NORTHEAST);
+        movePlayer(hexDirections.NORTHEAST);
         NWbuttonState = false;
     }
     if (SEbuttonState){
         player.facing = hexDirections.SOUTHEAST;
-        moveGameBoard(hexDirections.SOUTHEAST);
+        movePlayer(hexDirections.SOUTHEAST);
         NWbuttonState = false;
     }
     if (SbuttonState){        
         player.facing = hexDirections.SOUTH;
-        moveGameBoard(hexDirections.SOUTH);
+        movePlayer(hexDirections.SOUTH);
         NWbuttonState = false;
     }
     if (SWbuttonState){
         player.facing = hexDirections.SOUTHWEST;
-        moveGameBoard(hexDirections.SOUTHWEST);
+        movePlayer(hexDirections.SOUTHWEST);
         NWbuttonState = false;
     }
 }
