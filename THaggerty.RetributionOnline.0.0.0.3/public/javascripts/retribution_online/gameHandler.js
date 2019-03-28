@@ -53,7 +53,7 @@ function movePlayer(moveDirection) {
     if (moveDirection == hexDirections.NORTHWEST) {
         if ( player.x % 2 == 0) {
             player.x--;
-            player.y--;
+           
              }
         else {
             player.x--;
