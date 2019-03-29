@@ -4,6 +4,7 @@ var testHex = document.getElementById("testHex");
 var dirtHex = document.getElementById("dirtHex");
 var dirtHex2 = document.getElementById("dirtHex2");
 var stoneHex = document.getElementById("stoneHex");
+var waterHexSprite = document.getElementById("waterHexSprite");
 var monkSprite = document.getElementById("monkSprite");
 
 canvas.width = window.innerWidth;
@@ -40,6 +41,8 @@ function drawHex(drawX, drawY, hexTexture) {
         case 3:
             ctx.drawImage(stoneHex, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
             break;
+        case 4:
+        drawWaterHex(drawX, drawY, frameCounter);
     }
     
 }
@@ -50,6 +53,13 @@ function drawPlayer(drawX, drawY, facing, frameCount) {
     var frameHeight = 100;
     //what the hell is this scaling (is it the hexes or the guy?)
     ctx.drawImage(monkSprite, frameWidth * frame, frameHeight * facing, frameWidth, frameHeight, drawX, drawY - drawScale / 4, drawScale, drawScale);// drawX, drawY - drawScale / 4, drawScale, drawScale);
+}
+function drawWaterHex(drawX, drawY, frameCount) {
+    var frame = frameCount % 8;
+    var frameWidth = 32;
+    var frameHeight = 32;
+    //what the hell is this scaling (is it the hexes or the guy?)
+    ctx.drawImage(waterHexSprite, frameWidth * frame, 0, frameWidth, frameHeight, drawX, drawY, drawScale, drawScale);// drawX, drawY - drawScale / 4, drawScale, drawScale);
 }
 
 function fillScreen(){
