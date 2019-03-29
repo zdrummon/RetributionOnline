@@ -13,7 +13,7 @@ We're building a platform agnpostic game as both a test for ourselves and a prod
 - [ ] take pictures for the md file
 - [x] add directional facting and keyboard controls
 - [ ] add database using for the player movement to access in gameHandler.moveGameBoard to fill edge data
-
+- [ ] build assets for more objects
  ### notes
 filler text until we add notes - just put pretty thoughts here
 or just experiment with formatting `like so`
