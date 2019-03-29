@@ -50,7 +50,7 @@ var mobArray = new Array();
 var itemArray = new Array();
 //////-------------'------------------'-'-----       
 
-itemArray.push(new item( 18, 18, 3, 10, 1));
+//itemArray.push(new item( 18, 18, 3, 10, 1));
 
 
 

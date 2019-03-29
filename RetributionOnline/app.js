@@ -7,6 +7,15 @@ var hbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var expressSession = require('express-session');
 
+//START MODULE EXPERIMENT===============================
+require("babel-polyfill");
+require('babel-register')({
+  presets: ['env']
+});
+
+module.exports = require('./public/javascripts/main.js');
+//END MODULE EXPERIMENT=================================
+
 var indexRouter = require('./routes/index');
 
 var app = express();
