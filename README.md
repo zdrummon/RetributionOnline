@@ -3,7 +3,7 @@
 | ------------- | ------------- |
 | cesismalon@gmail.com | zdrummon@gmail.com |
 
-https://drive.google.com/file/d/1ii0uTXIi1Xe_XYgRtYnLiEzfAD3fNeWM/view?usp=sharing
+Design Document: https://docs.google.com/document/d/1mac-0VZsTrez9QvabBz1CASV5c2CC6-o7pHtvNSD0ZE/edit?usp=sharing
 
 We're building a platform agnpostic game as both a test for ourselves and a product for personal enjoyment and the enrichment of those that will be able to play it. We're currently calling it Retribution Online but it's based on a fictional world we crafted for a previous game project that went by the name Retribution, and primarily involves tactical turn based combat on a hexagonal game grid between various humanoid species, such as humans, goblins, and dwarves.
 
