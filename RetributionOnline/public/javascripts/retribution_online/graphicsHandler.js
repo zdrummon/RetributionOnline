@@ -42,7 +42,7 @@ function drawHex(drawX, drawY, hexTexture) {
             ctx.drawImage(stoneHex, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
             break;
         case 4:
-        drawWaterHex(drawX, drawY, frameCounter);
+        drawWaterHex(drawX, drawY, frameCount);
     }
     
 }
@@ -131,7 +131,7 @@ function updateScreen() {
 
             //-------------------------------------draw player--------
             if (veiwport[x][y] == 2) {
-                drawPlayer(dx, dy, player.facing, frameCounter);
+                drawPlayer(dx, dy, player.facing, frameCount);
             }
 
 
