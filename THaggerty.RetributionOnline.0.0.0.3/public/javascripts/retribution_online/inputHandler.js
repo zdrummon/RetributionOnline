@@ -11,6 +11,7 @@ var SWbuttonState = false;
 function keyDownHandler(e) {
     if(e.keyCode == 87) {      //w key
         NWbuttonState = true;
+        
     }
     else if(e.keyCode == 69) { //e key
         NbuttonState = true;

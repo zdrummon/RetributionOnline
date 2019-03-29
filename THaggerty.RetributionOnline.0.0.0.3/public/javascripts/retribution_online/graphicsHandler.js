@@ -99,6 +99,7 @@ function updateScreen() {
                     if(x % 2 == 0){
                         if (player.x % 2 == 0){
                         drawHex(dx, dy , gameBoard[x+player.x][y+player.y + 1]);
+                        
                        // ctx.fillText((x) + ', ' + (y), dx + drawScale/4 , dy);
                         }
                         else{
