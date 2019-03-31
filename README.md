@@ -14,6 +14,71 @@ We're building a platform agnpostic game as both a test for ourselves and a prod
 - [x] add directional facting and keyboard controls
 - [ ] add database using for the player movement to access in gameHandler.moveGameBoard to fill edge data
 - [ ] build assets for more objects
+
+webpage for browser to open
+	in the webpage:
+	javascript canvas
+	images
+	javascript files
+	css files
+	rendered by node with routes
+	
+game
+	keyboard input
+		keyhandler files
+		keyhandler functions
+	graphics output
+		fpslimiter
+		hexdrawer
+		spritedrawer
+		canvasresizer
+		spriteanimator
+		hexanimator
+		(currently viewport)
+	game logic
+		maps	
+		input effect
+			move nw
+			move n
+			move ne
+			move sw
+			move s
+			move se
+			get item
+		game entities
+			x
+			y
+			z
+			id
+			type
+				items
+				hexes
+				mobs
+					max health
+					current health
+					max stamina
+					current stamina
+					inventory activator
+					inventory list
+					status activator
+					status list
+					collision detection
+							receive moveX
+							receive moveY
+							receive moveZ
+							test collision
+							return result
+					player
+						move around with key controls
+						status display
+					other mobs
+						friendly ai
+						neutral ai
+						hostile ai
+			
+		
+
+
  ### notes
 filler text until we add notes - just put pretty thoughts here
 or just experiment with formatting `like so`

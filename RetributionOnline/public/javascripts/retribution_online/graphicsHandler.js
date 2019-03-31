@@ -39,7 +39,7 @@ function drawHex(drawX, drawY, hexTexture) {
             ctx.drawImage(dirtHex2, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
             break;
         case 3:
-            ctx.drawImage(stoneHex, 0, 0, 32, 32, drawX, drawY, drawScale, drawScale);
+            ctx.drawImage(stoneHex, 0, 0, 32, 32, drawX, drawY , drawScale, drawScale);
             break;
         case 4:
         drawWaterHex(drawX, drawY, frameCounter);
@@ -51,15 +51,14 @@ function drawPlayer(drawX, drawY, facing, frameCount) {
     var frame = frameCount % 8;
     var frameWidth = 100;
     var frameHeight = 100;
-    //what the hell is this scaling (is it the hexes or the guy?)
+    //drawscale being the scale for each tile in pixels
     ctx.drawImage(monkSprite, frameWidth * frame, frameHeight * facing, frameWidth, frameHeight, drawX, drawY - drawScale / 4, drawScale, drawScale);// drawX, drawY - drawScale / 4, drawScale, drawScale);
 }
 function drawWaterHex(drawX, drawY, frameCount) {
     var frame = frameCount % 8;
     var frameWidth = 32;
     var frameHeight = 32;
-    //what the hell is this scaling (is it the hexes or the guy?)
-    ctx.drawImage(waterHexSprite, frameWidth * frame, 0, frameWidth, frameHeight, drawX, drawY, drawScale, drawScale);// drawX, drawY - drawScale / 4, drawScale, drawScale);
+    ctx.drawImage(waterHexSprite, frameWidth * frame, 0, frameWidth, frameHeight, drawX, drawY , drawScale, drawScale);// drawX, drawY - drawScale / 4, drawScale, drawScale);
 }
 
 function fillScreen(){
@@ -103,7 +102,7 @@ function updateScreen() {
             ctx.font = "10px Arial";
             ctx.fillStyle = "red"; 
             // draw visible tiles-------------------------------------------------------===
-            if (veiwport[y][x] >= 1) { 
+            if (veiwport[x][y] >= 1) { 
                 
                 if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 20  && y + player.y <= 20 )){
                     if(x % 2 == 0){
