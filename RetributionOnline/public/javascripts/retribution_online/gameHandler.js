@@ -68,7 +68,7 @@ function movePlayer(moveDirection) {
 }
 
 function updateGame() {
-    //console.log( frameCounter - lastKeyInputFrame);
+    
     if ( frameCounter - lastKeyInputFrame >= 7){
         inputKeyboardAvailable = true;
     }

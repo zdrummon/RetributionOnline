@@ -49,7 +49,7 @@ function updateScreen() {
             var dx = x * canvas.width / 9.75 - drawScale * 0.675;
             
             if (gameVeiw[x][y] >= 1) { 
-                if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 20  && y + player.y <= 20 )){
+                if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 30  && y + player.y <= 30 )){
                     if(x % 2 != 0){
                         drawHex(dx, dy - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))) , gameBoard[x+player.x][y+player.y]);
                         
@@ -63,7 +63,7 @@ function updateScreen() {
             var dx = x * canvas.width / 9.75 - drawScale * 0.675;
                 dy = dy + canvas.height / 32;
             if (gameVeiw[x][y] >= 1) { 
-                if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 20  && y + player.y <= 20 )){
+                if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 30  && y + player.y <= 30 )){
                     if(x % 2 == 0){
                         if (player.x % 2 == 0){
                         drawHex(dx, dy  - ((heightBoard[x+player.x][y+player.y + 1] * (drawScale/3))), gameBoard[x+player.x][y+player.y + 1]);
