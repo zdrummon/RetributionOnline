@@ -1,49 +1,3 @@
-const hexDirections = {
-    NORTHWEST:0,
-    NORTH:1,
-    NORTHEAST:2,
-    SOUTHEAST:3,
-    SOUTH:4,
-    SOUTHWEST:5
-}
-var veiwport = [
-     [0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,1,1,1,1,1,1,1,0,0],
-     [0,1,1,1,1,1,1,1,1,0,0],
-    [0,1,1,1,1,1,1,1,1,1,0],
-     [1,1,1,1,1,1,1,1,1,1,0],
-    [1,1,1,1,1,2,1,1,1,1,1],
-     [1,1,1,1,1,1,1,1,1,1,0],
-    [0,1,1,1,1,1,1,1,1,1,0],
-     [0,1,1,1,1,1,1,1,1,0,0],
-    [0,0,1,1,1,1,1,1,1,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0]
- ] ;
- var gameBoard = [
-////<<<<<<<<<<<<<<<<<<----------------------y
-    [1,1,1,1,2,1,1,1,2,1,1,1,1,1,2,1,4,1,2,1,1],//  x
-     [1,1,2,1,1,1,2,1,1,1,1,1,2,1,1,4,2,1,1,1,2],// |
-    [1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,4,1,1,2,1],//  |
-     [1,1,1,2,1,1,1,1,1,1,1,1,1,2,4,4,1,1,1,1,1],// |
-    [1,1,1,1,1,2,1,1,1,1,1,1,1,4,4,2,1,1,2,1,1],//  |
-     [1,2,1,2,1,1,1,2,1,1,1,2,4,4,1,1,1,2,1,1,1],// |
-    [1,1,1,1,1,1,1,1,2,2,3,1,1,4,4,1,1,1,2,2,1],//  |
-     [1,2,1,1,2,1,1,3,1,1,1,4,4,4,2,1,1,1,1,1,1],// |
-    [1,1,2,1,1,1,2,1,1,4,4,4,4,3,1,1,2,1,1,1,1],//  |
-     [2,1,2,1,1,1,1,3,4,3,3,4,4,3,1,1,1,1,2,1,1],// |
-    [1,1,1,1,1,1,1,1,4,3,4,3,3,3,3,1,1,1,1,1,1],//  |
-     [1,1,1,1,2,1,1,3,4,3,3,4,4,3,2,1,1,1,2,1,1],// |
-    [1,1,2,1,1,1,2,1,1,4,4,4,2,1,1,1,2,1,1,1,2],//  |
-     [1,1,1,1,1,1,2,3,1,2,1,1,1,3,1,1,2,1,1,2,1],// |
-    [1,1,1,2,1,1,1,1,1,1,3,1,1,2,1,1,1,1,1,1,1],//  |
-     [1,1,1,1,1,2,1,3,2,1,1,1,1,3,1,2,1,1,2,1,1],// |
-    [1,2,1,2,1,1,1,2,1,1,1,2,1,2,1,1,1,2,1,1,1],//  |
-     [1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,2,2,1],// V
-    [1,2,1,1,2,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1],//  V
-     [1,1,2,1,1,1,2,1,1,1,1,1,2,1,1,1,2,1,1,1,1],// V
-    [2,1,2,1,1,1,1,1,2,1,2,1,2,1,1,1,1,1,2,1,1],//  V
-     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-];
 
 var player = new mob(5,5,3,true,1,10,10,10,10,4,3,0);
 var mobArray = new Array();
@@ -64,50 +18,60 @@ var itemArray = new Array();
 
 //-----------------------------------------movePlayer
 function movePlayer(moveDirection) {
-   
-    if (moveDirection == hexDirections.NORTHWEST) {
-        if ( player.x % 2 == 0) {
-            player.x--;
-           
-             }
-        else {
-            player.x--;
+    var neighborValue = checkNeighborHex(player.x + 5, player.y + 5, gameBoard, moveDirection);
+     if ((neighborValue >= 0 ) && (neighborValue != 4 )){
+        if (moveDirection == hexDirections.NORTHWEST) {
+            if ( player.x % 2 == 0) {
+                player.x--;
+               
+                 }
+            else {
+                player.x--;
+                player.y--;
+            }       
+        } else if (moveDirection == hexDirections.NORTH) {
             player.y--;
-        }       
-    } else if (moveDirection == hexDirections.NORTH) {
-        player.y--;
-    } else if (moveDirection == hexDirections.NORTHEAST) {
-        if (player.x%2 == 0){
-            player.x++;
-           }else{
-            player.x++;
-            player.y--;
-        
-        }
-    } else if (moveDirection == hexDirections.SOUTHEAST) {
-        if ( player.x % 2 == 0) {
-            player.x++;
+        } else if (moveDirection == hexDirections.NORTHEAST) {
+            if (player.x%2 == 0){
+                player.x++;
+               }else{
+                player.x++;
+                player.y--;
+            
+            }
+        } else if (moveDirection == hexDirections.SOUTHEAST) {
+            if ( player.x % 2 == 0) {
+                player.x++;
+                player.y++;
+            }
+            else {
+                player.x++;
+            }
+        } else if (moveDirection == hexDirections.SOUTH) {
             player.y++;
+        } else if (moveDirection == hexDirections.SOUTHWEST) {
+            if ( player.x % 2 == 0) {
+                player.x--;
+                player.y++
+            }
+            else {
+                player.x--;
+                ;
+            }
         }
-        else {
-            player.x++;
-        }
-    } else if (moveDirection == hexDirections.SOUTH) {
-        player.y++;
-    } else if (moveDirection == hexDirections.SOUTHWEST) {
-        if ( player.x % 2 == 0) {
-            player.x--;
-            player.y++
-        }
-        else {
-            player.x--;
-            ;
-        }
+        console.log('player is at location ' + player.x + ', ' + player.y)
     }
-    console.log('player is at location ' + player.x + ', ' + player.y)
+    else{
+        console.log('player cannot move there')
+    }
+    
 }
 
 function updateGame() {
+    //console.log( frameCounter - lastKeyInputFrame);
+    if ( frameCounter - lastKeyInputFrame >= 7){
+        inputKeyboardAvailable = true;
+    }
     if (NWbuttonState){
         player.facing = hexDirections.NORTHWEST;
         movePlayer(hexDirections.NORTHWEST);
@@ -116,26 +80,26 @@ function updateGame() {
     if (NbuttonState){
         player.facing = hexDirections.NORTH;
         movePlayer(hexDirections.NORTH);
-        NWbuttonState = false;
+        NbuttonState = false;
     }
     if (NEbuttonState){
         player.facing = hexDirections.NORTHEAST;
         movePlayer(hexDirections.NORTHEAST);
-        NWbuttonState = false;
+        NEbuttonState = false;
     }
     if (SEbuttonState){
         player.facing = hexDirections.SOUTHEAST;
         movePlayer(hexDirections.SOUTHEAST);
-        NWbuttonState = false;
+        SEbuttonState = false;
     }
     if (SbuttonState){        
         player.facing = hexDirections.SOUTH;
         movePlayer(hexDirections.SOUTH);
-        NWbuttonState = false;
+        SbuttonState = false;
     }
     if (SWbuttonState){
         player.facing = hexDirections.SOUTHWEST;
         movePlayer(hexDirections.SOUTHWEST);
-        NWbuttonState = false;
+        SWbuttonState = false;
     }
 }

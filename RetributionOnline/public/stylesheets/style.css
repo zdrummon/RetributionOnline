@@ -17,6 +17,9 @@ a {
 
 canvas {
   display: inline;
+  padding: 0;
+  margin: auto;
+  display: block;
 }
 
 section {
