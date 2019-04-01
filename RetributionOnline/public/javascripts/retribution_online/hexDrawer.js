@@ -1,3 +1,9 @@
+var testHex = document.getElementById("testHex");
+var dirtHex = document.getElementById("dirtHex");
+var dirtHex2 = document.getElementById("dirtHex2");
+var stoneHex = document.getElementById("stoneHex");
+var waterHexSprite = document.getElementById("waterHexSprite");
+
 function drawHex(drawX, drawY, hexTexture) {
     switch (hexTexture){
         case 1:
@@ -14,6 +20,7 @@ function drawHex(drawX, drawY, hexTexture) {
     }
     
 }
+
 function drawAnimatedHex(spriteSheet,drawX, drawY, row, frameCount, totalRows, totalColumns) {
     var column = frameCount % totalColumns;
     var frameWidth = spriteSheet.width / totalColumns;

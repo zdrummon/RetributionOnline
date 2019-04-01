@@ -1,4 +1,6 @@
 
+var monkSprite = document.getElementById("monkSprite");
+
 function drawAnimatedSprite(spriteSheet,drawX, drawY, row, frameCount, totalRows, totalColumns) {
     var column = frameCount % totalColumns;
     var frameWidth = spriteSheet.width / totalColumns;

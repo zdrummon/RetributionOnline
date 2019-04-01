@@ -1,8 +1,8 @@
-//
+//checkNeighor.js contains tools for evaluating the values around a given hex within a given array
 function checkNeighborHex(x, y, gameBoardbuffer, checkDirection){
     // if the "home" hex is at an even x position
     if (x % 2 == 0){
-        //check the given direction depending on input
+        //check the given direction depending on input direction
         switch(checkDirection){
             case hexDirections.NORTHWEST:
                 if (x > 0 && y > 0){
