@@ -51,7 +51,7 @@ function updateScreen() {
             if (gameVeiw[x][y] >= 1) { 
                 if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 20  && y + player.y <= 20 )){
                     if(x % 2 != 0){
-                        drawHex(dx, dy , gameBoard[x+player.x][y+player.y]);
+                        drawHex(dx, dy - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))) , gameBoard[x+player.x][y+player.y]);
                         
                     }
                 }
@@ -66,18 +66,14 @@ function updateScreen() {
                 if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 20  && y + player.y <= 20 )){
                     if(x % 2 == 0){
                         if (player.x % 2 == 0){
-                        drawHex(dx, dy , gameBoard[x+player.x][y+player.y + 1]);
+                        drawHex(dx, dy  - ((heightBoard[x+player.x][y+player.y + 1] * (drawScale/3))), gameBoard[x+player.x][y+player.y + 1]);
                         
                        // ctx.fillText((x) + ', ' + (y), dx + drawScale/4 , dy);
                         }
                         else{
-                        drawHex(dx, dy , gameBoard[x+player.x][y+player.y])
+                        drawHex(dx, dy  - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))), gameBoard[x+player.x][y+player.y])
                         //ctx.fillText((x) + ', ' + (y), dx + drawScale/4 , dy);
                         }
-                    }
-
-                    else{
-                       
                     }
                 }
             } 
@@ -88,7 +84,7 @@ function updateScreen() {
                 var dy = y * canvas.height / 16 + drawScale * 1.5;
                 var dx = x * canvas.width / 9.75 - drawScale * 0.675;
                 if (gameVeiw[x][y] == 2) {
-                drawAnimatedSprite(monkSprite, dx, (dy - drawScale/4), player.facing, frameCounter, 6, 8);
+                drawAnimatedSprite(monkSprite, dx, (dy - drawScale/4) - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))), player.facing, frameCounter, 6, 8);
                 }
             } 
         }
