@@ -25,3 +25,15 @@ mob.prototype = gameEntityMobProto;
 //set mobs gameEntity type to mob
 mob.type='mob';
 
+//create item object
+function item(){}
+// mame variable to hold gameEntity's  prototype
+var gameEntityItemProto = new gameEntity;
+// add new properties to game entity prototype
+gameEntityitemProto.inventory;
+gameEntityitemProto.statusFlags;
+//set mob objects prototype to modified gameEntity's prototype
+mob.prototype = gameEntityItemProto;
+//set mobs gameEntity type to mob
+mob.type='mob';
+

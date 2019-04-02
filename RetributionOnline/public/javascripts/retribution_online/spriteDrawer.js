@@ -1,4 +1,4 @@
-
+//spriteDrawer.js holds variables, functions, and objects for sprite rendering
 var monkSprite = document.getElementById("monkSprite");
 
 function drawAnimatedSprite(spriteSheet,drawX, drawY, row, frameCount, totalRows, totalColumns) {
