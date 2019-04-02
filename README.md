@@ -24,10 +24,14 @@ webpage for browser to open
 	rendered by node with routes
 	
 game
-	keyboard input
-		keyhandler files
-		keyhandler functions
-	graphics output
+    inputHandler
+    	keyHandler
+            keyDown eventListener
+            keyUp eventListener
+            keyDown eventHandler 
+            keyUp eventHandler
+	
+    graphics output
 		fpslimiter
 		hexdrawer
 		spritedrawer
