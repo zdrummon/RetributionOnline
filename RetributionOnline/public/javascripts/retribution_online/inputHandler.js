@@ -57,11 +57,3 @@ function keyUpHandler(e) {
         SWbuttonState = false;
     }
 }
-/*
-function NWbuttonfunction(){NWbuttonState = true;}
-function  Nbuttonfunction(){NbuttonState = true;}
-function NEbuttonfunction(){NEbuttonState = true;}
-function SEbuttonfunction(){SEbuttonState = true;}
-function  Sbuttonfunction(){SbuttonState = true;}
-function SWbuttonfunction(){SWbuttonState = true;}
-*/

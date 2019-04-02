@@ -20,6 +20,7 @@ function resizeCanvas() {
 }
 //the games main drawing sequence
 function updateScreen() {
+    console.log(player);
     //--re-adjust screen variables------------------------
     drawScale = canvas.width / 7.25;
     canvas.width = window.innerWidth;

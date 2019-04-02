@@ -1,17 +1,19 @@
-//
-//
-var player = new mob(5,5,3,true,1,10,10,10,10,4,3,0);
-var mobArray = new Array();
-var itemArray = new Array();
-//////-------------'------------------'-'-----       
+//gameHandler.js contains variables, functions, and objects for game logic
+
+// define the player object as a mob type game entity
+var player = new mob;6
+player.x=0;
+player.y=0;
+player.facing=0;
+
 //-----------------------------------------movePlayer
 function movePlayer(moveDirection) {
-    var neighborValue = checkNeighborHex(player.x + 5, player.y + 5, gameBoard, moveDirection);
+    // check
+    var neighborValue = checkNeighborHex(player.x + 5, player.y + 5, gameBoard)[moveDirection];
      if ((neighborValue >= 0 ) && (neighborValue != 4 )){
         if (moveDirection == hexDirections.NORTHWEST) {
             if ( player.x % 2 == 0) {
                 player.x--;
-               
                  }
             else {
                 player.x--;
