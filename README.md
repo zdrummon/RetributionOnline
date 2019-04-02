@@ -3,9 +3,7 @@
 | ------------- | ------------- |
 | cesismalon@gmail.com | zdrummon@gmail.com |
 
-Design Document: https://docs.google.com/document/d/1mac-0VZsTrez9QvabBz1CASV5c2CC6-o7pHtvNSD0ZE/edit?usp=sharing
-
-We're building a platform agnpostic game as both a test for ourselves and a product for personal enjoyment and the enrichment of those that will be able to play it. We're currently calling it Retribution Online but it's based on a fictional world we crafted for a previous game project that went by the name Retribution, and primarily involves tactical turn based combat on a hexagonal game grid between various humanoid species, such as humans, goblins, and dwarves.
+We're building a browser-based javascript game as both a test for ourselves and a product for the enrichment of those that will be able to play it for free on the internet with their mothers permission to use her internet. We're currently calling it Retribution Online. It's based on a fictional subterranean world filled with various humanoid species such as humans, goblins, and dwarves. The gameplay primarily involves tactical turn-based exploration, combat, and death. The interface is an isometric perspective of a hex-based game grid with low resolution sprites.
 
 - [x] make a README.md
 - [ ] make a feature todo list
@@ -15,6 +13,9 @@ We're building a platform agnpostic game as both a test for ourselves and a prod
 - [ ] add database using for the player movement to access in gameHandler.moveGameBoard to fill edge data
 - [ ] build assets for more objects
 
+Design Document: https://docs.google.com/document/d/1mac-0VZsTrez9QvabBz1CASV5c2CC6-o7pHtvNSD0ZE/edit?usp=sharing
+
+
 webpage for browser to open
 	in the webpage:
 	javascript canvas
@@ -22,7 +23,7 @@ webpage for browser to open
 	javascript files
 	css files
 	rendered by node with routes
-	
+```
 game
     inputHandler
     	keyHandler
@@ -30,7 +31,7 @@ game
             keyUp eventListener
             keyDown eventHandler 
             keyUp eventHandler
-	
+
     graphics output
 		fpslimiter
 		hexdrawer
@@ -79,7 +80,7 @@ game
 						friendly ai
 						neutral ai
 						hostile ai
-			
+```		
 		
 
 
