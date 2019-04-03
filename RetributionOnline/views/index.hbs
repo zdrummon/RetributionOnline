@@ -1,12 +1,11 @@
 <h1>{{ title }}</h1>
+    
+<div>
 {{# if success }}
-
     <section class="success">
         <h2>Successful validation!</h2>
     </section>
-
 {{ else }}
-
     {{# if errors}}
         <section class="errors">
             <ul>
@@ -32,7 +31,25 @@
         </div>
         <button type="submit">Sign Up</button>
     </form>
-    <br><a href="http://localhost:8000/retribution_online">play a game</a>
-    <br><a href="http://localhost:8000/mongodb_test">test the database</a>
+</div>
+
+    
+
+    <div class = "company-information">
+        <div class = "company-employees">
+
+        </div>
+    </div>
+
+    <div class ="projects-container">
+         <h1 class= "project-title">Projects in development</h1>
+         <p1>List of the projects that we are currently developing.
+             
+         </p1>
+    <div class = "project-directory">
+        <br><a class = "project-cell" href="http://localhost:8000/retribution_online">play a game</a>
+        <br><a class = "project-cell" href="http://localhost:8000/mongodb_test">test the database</a>
+    </div>
+    </div>
 
 {{/if}}

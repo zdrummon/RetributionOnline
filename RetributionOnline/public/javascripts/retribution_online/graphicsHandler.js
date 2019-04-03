@@ -20,7 +20,6 @@ function resizeCanvas() {
 }
 //the games main drawing sequence
 function updateScreen() {
-    console.log(player);
     //--re-adjust screen variables------------------------
     drawScale = canvas.width / 7.25;
     canvas.width = window.innerWidth;
@@ -73,18 +72,25 @@ function updateScreen() {
                         }
                     }
                 }
-            } 
-        } 
+            }
+             
+        }  
         
         //-------------------------------------draw player---------------------------------layer 3-----------------
         for (x = 0;  x < 11; x++){
             //variables for tansforming index coordinates to pixel coordinates
             var dy = y * canvas.height / 16 + drawScale * 1.5;
             var dx = x * canvas.width / 9.75 - drawScale * 0.675;
+            
+            if (gameVeiw[x][y] >= 1) {
+                if ((x + player.x == brain.x )&&(y + player.y == brain.y)){
+                    drawAnimatedSprite(brainSprite, dx + drawScale/4, (dy - drawScale/4) - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))), 0, frameCounter, 1, 4, .5,1);
+                }
+            }
             // if the gameVeiw value is 2 and thus the player
             if (gameVeiw[x][y] == 2) {
                 //draw animated sprite from the monk sprite sheet with appropriate verticle offsets
-                drawAnimatedSprite(monkSprite, dx, (dy - drawScale/4) - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))), player.facing, frameCounter, 6, 8);
+                drawAnimatedSprite(monkSprite, dx, (dy - drawScale/4) - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))), player.facing, frameCounter, 6, 8, 1,1);
             }
         } 
     }

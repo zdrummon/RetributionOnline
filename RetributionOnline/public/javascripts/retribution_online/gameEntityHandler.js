@@ -18,7 +18,7 @@ gameEntityMobProto.maxHealth;
 gameEntityMobProto.health;
 gameEntityMobProto.maxStamina;
 gameEntityMobProto.stamina;
-gameEntityMobProto.inventory;
+gameEntityMobProto.inventory = new Array();
 gameEntityMobProto.statusFlags;
 //set mob objects prototype to modified gameEntity's prototype
 mob.prototype = gameEntityMobProto;
@@ -30,10 +30,11 @@ function item(){}
 // mame variable to hold gameEntity's  prototype
 var gameEntityItemProto = new gameEntity;
 // add new properties to game entity prototype
-gameEntityitemProto.inventory;
-gameEntityitemProto.statusFlags;
-//set mob objects prototype to modified gameEntity's prototype
-mob.prototype = gameEntityItemProto;
+gameEntityItemProto.inventory;
+gameEntityItemProto.statusFlags;
+//set item objects prototype to modified gameEntity's prototype
+item.prototype = gameEntityItemProto;
 //set mobs gameEntity type to mob
-mob.type='mob';
+item.type='item';
 
+gameEntityArray = new Array();

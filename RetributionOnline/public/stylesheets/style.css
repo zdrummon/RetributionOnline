@@ -4,6 +4,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #000000;
   color: #caa554;
+  text-align:center;
 }
 
 a {
@@ -91,3 +92,24 @@ button:hover {
   background: #95a5a6;
   border: 1px solid black;
 }
+
+/* index page */
+
+.project-directory{
+  display: table;
+  width: 100%;
+  text-align: center;
+}
+
+.project-title{
+  width: 100%;
+  display: table-cell;
+  text-align: center;
+}
+
+.project-cell {
+	border: 1px solid #999999;
+	display: table-cell;
+  padding: 3px 10px;
+}
+
