@@ -6,6 +6,7 @@ webpage for browser to open
 	in the webpage:
 	javascript canvas
 	images
+	audio
 	javascript files
 	css files
 	rendered by node with routes
@@ -25,9 +26,17 @@ game
 		canvasresizer
 		spriteanimator
 		hexanimator
-		(currently viewport)
+		gameveiw
+		audiohandler
+			bgm picker
+			soundboard
 	game logic
-		maps	
+		maps
+			logic points
+				spawn locations
+				event locations
+			2d array
+				hex data
 		input effect
 			move nw
 			move n
@@ -41,9 +50,23 @@ game
 			y
 			z
 			id
+			texture
 			type
 				items
+					item type
+					quantity
+					effect
+						status flags
+							add to stat
+							subtract from stat
+							lock stat
+							unlock stat
 				hexes
+					material
+						stand on effect
+						illumination
+						ambient sound
+						stepping sound
 				mobs
 					max health
 					current health

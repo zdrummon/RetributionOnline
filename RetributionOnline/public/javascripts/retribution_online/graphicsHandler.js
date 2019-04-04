@@ -3,6 +3,8 @@
 //variables to hold information about elements in the hbs/html file
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
+//width of the game veiw
+var gameVeiwRadius = 11;
 //drawscale is the size by which the images on the screen are limited by
 var drawScale = canvas.width / 7.25;
 // function that once called will adjust the size of the canvas to the windows edges
@@ -28,6 +30,10 @@ function updateScreen() {
     resizeCanvas();
     //--clear the screen in preparation of drawing
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.font = "10px Arial";
+    ctx.fillStyle = "red";
+
 
     // Begin scanning arrays for instruction on what to draw and where
     for (y = 0; y < 11; y++) { //drawing from top down (back to front)
@@ -79,20 +85,43 @@ function updateScreen() {
         //-------------------------------------draw player---------------------------------layer 3-----------------
         for (x = 0;  x < 11; x++){
             //variables for tansforming index coordinates to pixel coordinates
-            var dy = y * canvas.height / 16 + drawScale * 1.5;
+            var dy = y * canvas.height / 16 + drawScale * 1.5 
             var dx = x * canvas.width / 9.75 - drawScale * 0.675;
-            
+             // if the hex in the x,y location is visible (greater type than 0)
             if (gameVeiw[x][y] >= 1) {
-                if ((x + player.x == brain.x )&&(y + player.y == brain.y)){
-                    drawAnimatedSprite(brainSprite, dx + drawScale/4, (dy - drawScale/4) - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))), 0, frameCounter, 1, 4, .5,1);
+                //if the player is within the bounds of the region
+                if (x + player.x == brain.x && y + player.y == brain.y ){
+                    //if the x coordinate is even (hexagonal offset)
+                    console.log('there is the item on screen')
+                    
+                    if(x % 2 == 0){
+                        dy = y * canvas.height / 16 + drawScale * 1.5 + canvas.height / 32 - drawScale;
+                        //if the player is in an even x position
+                        //draw the sprite
+                            //add a verticle offset of a full hex
+                            drawAnimatedSprite(brainSprite, dx, dy  - ((heightBoard[brain.x][brain.y] * (drawScale/3))), 0, frameCounter, 1, 4 , 1, 1);
+                            console.log('draw mode 1');
+                        }
+                        //if the player is at an odd x position
+                        
+                    
+                    else{
+                        console.log('draw mode 3');
+                        drawAnimatedSprite(brainSprite, dx, dy - ((heightBoard[brain.x][brain.y] * (drawScale/3))) ,0, frameCounter, 1, 4 , 1, 1);
+                    }
                 }
             }
+         
+            
+                
             // if the gameVeiw value is 2 and thus the player
             if (gameVeiw[x][y] == 2) {
                 //draw animated sprite from the monk sprite sheet with appropriate verticle offsets
                 drawAnimatedSprite(monkSprite, dx, (dy - drawScale/4) - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))), player.facing, frameCounter, 6, 8, 1,1);
+                ctx.fillText(player.x + ', ' + player.y, dx - drawScale/4 ,dy - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))));
             }
         } 
     }
 }
 
+//drawAnimatedSprite(brainSprite

@@ -45,5 +45,5 @@ function movePlayer(moveDirection) {
     
     else{
     }
-    
+    gameEntityArray[player] = player;
 }

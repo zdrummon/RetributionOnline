@@ -25,7 +25,7 @@ function music(sourcePath) {
 function playAudioBGM(songChoice) { 
     switch (songChoice){
         case 0:
-        var HINRwaves = new music('audio/calm/waves.mp3');
+        var HINRwaves = new Audio('audio/calm/waves.mp3');
             
             HINRwaves.play();
             break;
@@ -39,15 +39,33 @@ function playAudioBGM(songChoice) {
             break;
         case 3:
         var HINRactive1 = new Audio("audio/active/hearts_in_the_rock3active1.mp3");
+            HINRactive1.load();
+            HINRactive1.loop;
             HINRactive1.play();
+            HINRactive1.onerror = function() {
+                HINRactive1 = new Audio("audio/active/hearts_in_the_rock3active1.ogg");
+                HINRactive1.play();
+            }
             break;
         case 4:
         var HINRactive2 = new Audio("audio/active/hearts_in_the_rock3active2.mp3");
+            HINRactive2.load();
+            HINRactive2.loop;
             HINRactive2.play();
+            HINRactive2.onerror = function() {
+                HINRactive2 = new Audio("audio/active/hearts_in_the_rock3active2.ogg");
+                HINRactive2.play();
+            }
             break;
         case 5:
         var HINRactive3 = new Audio("audio/active/hearts_in_the_rock3active3.mp3");
+            HINRactive3.load();
+            HINRactive3.loop;
             HINRactive3.play();
+            HINRactive3.onerror = function() {
+                HINRactive3 = new Audio("audio/active/hearts_in_the_rock3active3.ogg");
+                HINRactive3.play();
+            }
             break;
         case 6:
         var dust_on_the_anchor_3 = new Audio("audio/dust_on_the_anchor_3.mp3");

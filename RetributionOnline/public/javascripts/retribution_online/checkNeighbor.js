@@ -21,7 +21,7 @@ function checkNeighborHex(x, y, gameBoardbuffer){
         neighborArray[hexDirections.NORTHEAST] = gameBoardbuffer[x + 1][y];
         neighborArray[hexDirections.SOUTHEAST] = gameBoardbuffer[x + 1][y + 1];
         neighborArray[hexDirections.SOUTH]     = gameBoardbuffer[x][y + 1];
-        neighborArray[hexDirections.SOUTHWEST] = gameBoardbuffer[x - 1][y];
+        neighborArray[hexDirections.SOUTHWEST] = gameBoardbuffer[x - 1][y + 1];
     }
     //return the list of results to invocation location
     return neighborArray;     
