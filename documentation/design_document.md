@@ -2,6 +2,34 @@
 
 
 ```
+game()
+    updateInputs()
+    	keyHandler
+            keyDown eventListener
+            keyUp eventListener
+            keyDown eventHandler 
+            keyUp eventHandler
+    updateConnections()
+    updateGame()
+        read and update GameState
+        read and update PlayerState
+        read and update MapState
+        read and update InputState
+        gameLogic
+        boardLogic        
+        entityLogic
+    updateAudio()
+    fpsLimiter()
+        updateScreen()
+
+
+
+
+
+
+
+
+
 webpage for browser to open
 	in the webpage:
 	javascript canvas
@@ -11,13 +39,7 @@ webpage for browser to open
 	css files
 	rendered by node with routes
 
-game
-    inputHandler
-    	keyHandler
-            keyDown eventListener
-            keyUp eventListener
-            keyDown eventHandler 
-            keyUp eventHandler
+
 
     graphics output
 		fpslimiter
@@ -89,4 +111,5 @@ game
 						friendly ai
 						neutral ai
 						hostile ai
+                    logic
 ```	
