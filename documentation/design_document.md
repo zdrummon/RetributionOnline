@@ -3,29 +3,38 @@
 
 ```
 game()
-    updateInputs()
-    	keyHandler
-            keyDown eventListener
-            keyUp eventListener
-            keyDown eventHandler 
-            keyUp eventHandler
-    updateConnections()
     updateGame()
         read and update GameState
-        read and update PlayerState
-        read and update MapState
-        read and update InputState
         gameLogic
-        boardLogic        
+        read and update PlayerState
         entityLogic
-    updateAudio()
+        read and update MapState
+        boardLogic        
+        read and update InputState
+
     fpsLimiter()
         updateScreen()
 
+connectionHandler()
 
+keyHandler()
+    keyDown eventListener()
+    keyUp eventListener()
+    keyDown eventHandler()
+    keyUp eventHandler()
 
+audioHandler()
+	soundEffects() (non-looping, trigger-based)
+	musicEffects() (looping, synchronizable)
+	ambientEffects() (looping, ambient area profiles)
 
-
+graphicsHandler()
+	canvasDrawer()
+		hudDrawer()
+		boardDrawer()
+			(hex, item, mob, equipment, *shading, *FX, *ceiling)
+			animationHandler()
+			movementInterpolator()
 
 
 
@@ -41,17 +50,6 @@ webpage for browser to open
 
 
 
-    graphics output
-		fpslimiter
-		hexdrawer
-		spritedrawer
-		canvasresizer
-		spriteanimator
-		hexanimator
-		gameveiw
-		audiohandler
-			bgm picker
-			soundboard
 	game logic
 		maps
 			logic points
@@ -67,11 +65,11 @@ webpage for browser to open
 			move s
 			move se
 			get item
-		game entities
+		game entities	(game entity array)
 			x
 			y
 			z
-			id
+			id	(= the length of the game entity array)
 			texture
 			type
 				items
