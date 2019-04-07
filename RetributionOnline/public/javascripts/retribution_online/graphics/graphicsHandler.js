@@ -5,24 +5,45 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 //width of the game veiw
-var gameVeiwRadius = 11;
+//var gameViewRadius = 11;
 
 //drawscale is the size by which the images on the screen are limited by
-var drawScale = canvas.width / 7.25;
+//var drawScale = canvas.width / 7.25;
+
+//checks to see whether device is mobile
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
+function testCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.rect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#000000";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function updateCanvas() {
+    var logMode = false;
+
+    if (isMobileDevice()) {
+        logger('isMobileDevice(true)', isMobileDevice(), 'it is a mobile device', logMode);
+        resizeCanvasMobile();
+
+    } else {
+        logger('isMobileDevice(false)', isMobileDevice(), 'it is a mobile device', logMode);
+        resizeCanvasDesktop();
+    }
+
+    testCanvas();
+}
+
+
+
 /*
 // function that once called will adjust the size of the canvas to the windows edges
-    //all while maintaining a 16/9 rati0
-function resizeCanvas() {
-    if (canvas.width / 9 > canvas.height / 16) {
-        //if the screen is wider than it is tall
-        canvas.width = window.innerHeight * 9/16; // adjust screen to window height
-        canvas.height = window.innerHeight;
-    } else {
-        //if the screem is taller than it is wide
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerWidth * 16/9; // adjust screen to window width
-    }    
-}
+    //all while maintaining a 16/9 ratio
 //the games main drawing sequence
 function updateScreen() {
     //--re-adjust screen variables------------------------
