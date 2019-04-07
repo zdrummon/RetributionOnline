@@ -1,6 +1,6 @@
-//main.js is the launching javascript file for Retribution Online
+//main.js is the main game loop
 
-// leave room for inports here
+// leave room for imports here
 
 // main game function
 function game() {
@@ -9,7 +9,7 @@ function game() {
     updateGame();
     
     //check to see if the screen needs updating (time based)
-    if(frameTimer()){
+    if(fpsLimiter()) {
         //draw the games graphics to the canvas
         updateScreen();
     }   
