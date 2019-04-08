@@ -26,6 +26,7 @@ function testCanvas() {
 
 function updateCanvas() {
     var logMode = false;
+    logger('updateCanvas()', 'updateCanvas()', 'the updateCanvas() function has been called')
 
     if (isMobileDevice()) {
         logger('isMobileDevice(true)', isMobileDevice(), 'it is a mobile device', logMode);
