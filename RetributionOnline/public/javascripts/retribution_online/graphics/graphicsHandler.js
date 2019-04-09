@@ -4,9 +4,6 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-//width of the game veiw
-//var gameViewRadius = 11;
-
 //drawscale is the size by which the images on the screen are limited by
 //var drawScale = canvas.width / 7.25;
 
@@ -15,8 +12,11 @@ function isMobileDevice() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
-function testCanvas() {
+//canvas clearing function
+function clearCanvas() {
+    //clear the the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //draw the backround color
     ctx.beginPath();
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#000000";
@@ -37,7 +37,8 @@ function updateCanvas() {
         resizeCanvasDesktop();
     }
 
-    testCanvas();
+    clearCanvas();
+    entityToSprite();
 }
 
 

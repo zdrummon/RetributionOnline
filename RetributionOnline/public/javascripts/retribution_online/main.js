@@ -1,5 +1,11 @@
 //main.js is the main game loop
 
+
+boardToHex(gameBoard);
+
+
+
+
 // main game function
 function game() {
     var logMode = false;
