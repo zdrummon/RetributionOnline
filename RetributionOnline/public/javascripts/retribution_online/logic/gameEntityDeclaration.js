@@ -52,8 +52,8 @@ mobEntity.prototype = gameMobProto;
 
 // player type entity
 function playerEntity(){}
-var playerEntityProto = new mob;
-playerEntityProto.type = 'player';
+gameMobProto.type = 'player';
+playerEntity.prototype = gameMobProto;
 
 // main item entity--------------------------------------------
 function itemEntity(){}
@@ -74,9 +74,6 @@ gameLogicEntityPrototype.eventType;
 // set the game entity type to logic 
 gameLogicEntityPrototype.type = 'logic';
 logicEntity.prototype = gameLogicEntityPrototype;
-
-
-
 
 
 

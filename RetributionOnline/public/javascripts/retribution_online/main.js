@@ -1,9 +1,14 @@
 //main.js is the main game loop
 
 
-boardToHex(gameBoard);
-
-
+boardToHex(gameBoard, heightMapArray);
+var player = new playerEntity();
+player.x = 3;
+player.y = 3;
+player.texture = monkSprite;
+player.facing = hexDirections.SOUTH;
+player.id = gameEntityArray.length;
+gameEntityArray.push(player);
 
 
 // main game function
@@ -12,7 +17,7 @@ function game() {
     logger('game()', 'game()', 'An itteration of the game() function has begun', logMode);
     
     //update variables and objects to further the gameplay
-    //updateLogic();
+    updateLogic();
     
     //check to see if the screen needs updating (time based)
     logger('game()', 'fpsLimiter()', 'check to see if the screen needs updating', logMode);
@@ -29,4 +34,5 @@ function game() {
 }
 
 //invoke the main game loop
+
 game();

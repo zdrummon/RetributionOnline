@@ -4,6 +4,8 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
+//initialize the drawscale
+var drawScale = 32;
 //drawscale is the size by which the images on the screen are limited by
 //var drawScale = canvas.width / 7.25;
 
@@ -37,8 +39,15 @@ function updateCanvas() {
         resizeCanvasDesktop();
     }
 
+    //adjust the drawscale
+    drawScale = canvas.width / 20;
+    logger('updateCanvas()', 'drawScale', drawScale, logMode);
+
     clearCanvas();
+
+
     entityToSprite();
+    
 }
 
 
@@ -69,7 +78,7 @@ function updateScreen() {
             var dy = y * canvas.height / 16 + drawScale * 1.5;
             var dx = x * canvas.width / 9.75 - drawScale * 0.675;
             // if the hex in the x,y location is visible (greater type than 0)
-            if (gameVeiw[x][y] >= 1) { 
+            if (gameview[x][y] >= 1) { 
                 //if the player is within the bounds of the region
                 if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 30  && y + player.y <= 30 )){
                     //if the x coordinate is odd (hexagonal offset)
@@ -86,7 +95,7 @@ function updateScreen() {
             var dy = y * canvas.height / 16 + drawScale * 1.5 + canvas.height / 32;
             var dx = x * canvas.width / 9.75 - drawScale * 0.675;
              // if the hex in the x,y location is visible (greater type than 0)
-            if (gameVeiw[x][y] >= 1) {
+            if (gameview[x][y] >= 1) {
                 //if the player is within the bounds of the region
                 if ((x + player.x >= 0  && y + player.y >= 0 ) && (x + player.x <= 30  && y + player.y <= 30 )){
                     //if the x coordinate is even (hexagonal offset)
@@ -114,7 +123,7 @@ function updateScreen() {
             var dy = y * canvas.height / 16 + drawScale * 1.5 
             var dx = x * canvas.width / 9.75 - drawScale * 0.675;
              // if the hex in the x,y location is visible (greater type than 0)
-            if (gameVeiw[x][y] >= 1) {
+            if (gameview[x][y] >= 1) {
                 //if the player is within the bounds of the region
                 if (x + player.x == brain.x && y + player.y == brain.y ){
                     //if the x coordinate is even (hexagonal offset)
@@ -140,8 +149,8 @@ function updateScreen() {
          
             
                 
-            // if the gameVeiw value is 2 and thus the player
-            if (gameVeiw[x][y] == 2) {
+            // if the gameview value is 2 and thus the player
+            if (gameview[x][y] == 2) {
                 //draw animated sprite from the monk sprite sheet with appropriate verticle offsets
                 drawAnimatedSprite(monkSprite, dx, (dy - drawScale/4) - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))), player.facing, frameCounter, 6, 8, 1,1);
                 ctx.fillText(player.x + ', ' + player.y, dx - drawScale/4 ,dy - ((heightBoard[x+player.x][y+player.y] * (drawScale/3))));

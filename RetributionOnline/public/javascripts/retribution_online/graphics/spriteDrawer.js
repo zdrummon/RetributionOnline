@@ -8,22 +8,21 @@ var stoneHex = document.getElementById("stoneHex");
 var waterHexSprite = document.getElementById("waterHexSprite");
 // function for drawing staic hex image
 // takes in xy coordinates and an image element and draws them to scale on the requested pixel location
-var drawScale = 32;
-function drawHex(drawX, drawY, hexTexture) {
-    switch (hexTexture){
-        case 1:
+
+function drawHex(drawX, drawY, hexMaterial) {
+    switch (hexMaterial){
+        case 'dirt1':
             ctx.drawImage(dirtHex, 0, 0, 32, 64, drawX, drawY, drawScale, drawScale * 2);
             break;
-        case 2:
+        case 'dirt2':
             ctx.drawImage(dirtHex2, 0, 0, 32, 64, drawX, drawY, drawScale, drawScale * 2);
             break;
-        case 3:
+        case 'stone':
             ctx.drawImage(stoneHex, 0, 0, 32, 64, drawX, drawY , drawScale, drawScale * 2);
             break;
-        case 4:
+        case 'water':
         drawSprite(waterHexSprite, drawX, drawY + drawScale/10, 0, frameCounter, 1, 8, 1, 2);
     }
-    
 }
 
 function drawSprite(spriteSheet,drawX, drawY, row, frameCount, totalRows, totalColumns, drawWidthMultiplier, drawHeightMultiplier) {
