@@ -21,7 +21,7 @@ function drawHex(drawX, drawY, hexMaterial) {
             ctx.drawImage(stoneHex, 0, 0, 32, 64, drawX, drawY , drawScale, drawScale * 2);
             break;
         case 'water':
-        drawSprite(waterHexSprite, drawX, drawY + drawScale/10, 0, frameCounter, 1, 8, 1, 2);
+        drawSprite(waterHexSprite, drawX, drawY + drawScale/10, 0, frameCounter + Math.floor((Math.random() * 2) + 1), 1, 8, 1, 2);
     }
 }
 

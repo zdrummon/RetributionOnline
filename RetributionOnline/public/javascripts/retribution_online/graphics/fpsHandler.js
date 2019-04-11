@@ -1,6 +1,6 @@
 // frameHandler.js contains variables, functions,
 var frameDelta;       //variable for holding the passing of time
-var frameRate = 60;  //fps
+var frameRate = 1000/10;  //fps
 var lastFrame = 0;    //the last time that the screen was incremented
 var frameCounter = 0; // this is used throughout the whole program
 
