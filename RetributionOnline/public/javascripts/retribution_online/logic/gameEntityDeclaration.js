@@ -1,4 +1,87 @@
-// gameEntityHandler.js
+//gameEntity.js
+
+
+// container to hold the game entitys
+var gameEntityArray = new Array();
+
+// main game entity object ----------------------
+// each gameEntity contains 
+//  - xyz coordinates
+//  - a height value
+//  - a type identifier
+//  - id which is specific to each entity
+function gameEntity(x, y, z, height, type){
+  this.x = x ;
+  this.y = y ;
+  this.z = z ;
+  this.height = height;
+  this.type = type ;
+  this.id = gameEntityArray.length;
+}
+
+// main hex entity--------------------------------------------
+function hexEntity(x, y, z, height, material){
+  this.material = material;
+  gameEntity.call(this, x, y, z, height, 'hex');
+}
+  hexEntity.prototype = Object.create(gameEntity.prototype);
+  Object.defineProperty(hexEntity.prototype, 'constructor', { 
+    value: hexEntity, 
+    enumerable: false,
+    writable: true });
+
+// main mob entity ------------------------------------------
+
+function mobEntity( x, y, z, height, facing, mobType, mobStatus){
+  this.facing = facing;
+  this.mobType = mobType;
+  // switch (mobType){
+    //case 'someMob':
+      //this.texture = mobsSprite;
+      //break;
+    //default:
+      //this.texture = null;    
+  //}
+  this.mobStatus = mobStatus;
+  gameEntity.call(this, x, y, z, height, 'mob');
+}
+
+mobEntity.prototype = Object.create(gameEntity.prototype);
+Object.defineProperty(mobEntity.prototype, 'constructor', { 
+  value: mobEntity, 
+  enumerable: false,
+  writable: true });
+
+
+
+
+
+
+
+
+
+
+
+/*
+class MyClass {
+    prop = value;
+  
+    constructor(...) {
+      // ...
+    }
+  
+    method(...) {}
+  
+    get something(...) {}
+    set something(...) {}
+  
+    [Symbol.iterator]() {}
+    // ...
+  }
+  
+  
+  
+  // gameEntityHandler.js
 
 // container to hold the game entitys
 var gameEntityArray = new Array();
@@ -85,4 +168,4 @@ logicEntity.prototype = gameLogicEntityPrototype;
 
 
 
-
+*/

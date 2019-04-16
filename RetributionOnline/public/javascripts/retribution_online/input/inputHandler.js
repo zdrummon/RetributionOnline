@@ -9,6 +9,8 @@ var NEbuttonState = false;
 var SEbuttonState = false;
 var SbuttonState = false;
 var SWbuttonState = false;
+var RightbuttonState = false;
+var LeftbuttonState = false;
 
 function keyDownHandler(e) {
     if (inputKeyboardAvailable){
@@ -30,6 +32,15 @@ function keyDownHandler(e) {
         else if(e.keyCode == 83 && SWbuttonState == false) { //s key
             SWbuttonState = true;
         }
+        else if(e.keyCode == 39 && RightbuttonState == false) { //Right key
+            console.log('Right')
+            RightbuttonState = true;
+        }
+        else if(e.keyCode == 37 && LeftbuttonState == false) { //Right key
+            console.log('Left')
+            LeftbuttonState = true;
+        }
+
         inputKeyboardAvailable = false;
         lastKeyInputFrame = frameCounter;
     }
@@ -55,6 +66,12 @@ function keyUpHandler(e) {
     }
     else if(e.keyCode == 83) { //s key
         SWbuttonState = false;
+    }
+    else if(e.keyCode == 39) { //Right key
+        RightbuttonState = false;
+    }
+    else if(e.keyCode == 37) { //Right key
+        LeftbuttonState = false;
     }
 }
 
@@ -92,5 +109,15 @@ function keyWhipserer() {
         player.facing = hexDirections.SOUTHWEST;
         movePlayer(hexDirections.SOUTHWEST);
         SWbuttonState = false;
+    }
+    if (RightbuttonState){
+        console.log('Right');
+        cameraFacing++;
+        RightbuttonState = false;
+    }
+    if (LeftbuttonState){
+        console.log('Left');
+        cameraFacing--;
+        LeftbuttonState = false;
     }
 }

@@ -2,9 +2,7 @@
 
 
 boardToHex(gameBoard, heightMapArray);
-var player = new playerEntity();
-player.x = 3;
-player.y = 3;
+var player = new gameEntity(5, 5, 5, 0, 'player');
 player.texture = monkSprite;
 player.facing = hexDirections.SOUTH;
 player.id = gameEntityArray.length;

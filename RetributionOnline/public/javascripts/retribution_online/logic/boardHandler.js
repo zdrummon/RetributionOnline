@@ -9,7 +9,7 @@ const hexDirections = {
 }
 
 var gameBoard = [
-    [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
     [0, 0, 2, 3, 1, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0],
@@ -117,8 +117,8 @@ function boardToHex(region,regionHeightMap){
                 logger('boardToHex()','hex.y', hex.y, logMode);
             
                 // the z location is loaded from the heightMapArray based on the loaded x and y
-                hex.z = regionHeightMap[hex.y][hex.x];
-                logger('boardToHex()','hex.z', hex.z, logMode);
+                hex.height = regionHeightMap[hex.y][hex.x];
+                logger('boardToHex()','hex.height', hex.height, logMode);
 
 
                 //fill the hex with the appropriate id tag
