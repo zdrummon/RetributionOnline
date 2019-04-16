@@ -10,7 +10,18 @@ function sortByCoordinates(entityArray, direction){
         Bz = b.y - (b.x + (b.x & 1)) / 2;
         By = - Bx - Bz;
         switch (direction){
-            case hexDirections.NORTHWEST:
+            case hexDirections.NORTHWEST: //good
+                if (Ay + Az< By + Bz) {
+                    return 1;
+                }
+                if (Ay + Az> By + Bz) {
+                    return -1;
+                }
+                if (Ay + Az== By + Bz){
+                    return 0;
+                }
+                break;
+            case hexDirections.NORTH: // good
                 if (Az < Bz) {
                     return -1;
                 }
@@ -18,21 +29,10 @@ function sortByCoordinates(entityArray, direction){
                     return 1;
                 }
                 if (Az == Bz){
-                    return 0;
                 }
                 break;
-            case hexDirections.NORTH:
-                if (Ay < By) {
-                    return 1;
-                }
-                if (Ay > By) {
-                    return -1;
-                }
-                if (Ay == By){
-                    return 0;
-                }
-                break;
-            case hexDirections.NORTHEAST:
+            
+            case hexDirections.NORTHEAST: // good
                 if (Ax < Bx) {
                     return 1;
                 }
@@ -43,36 +43,36 @@ function sortByCoordinates(entityArray, direction){
                     return 0;
                 }
                 break;
-             case hexDirections.SOUTHEAST:
-                if (Az + Ay < Bz + By) {
+            case hexDirections.SOUTHEAST: // good
+                if (Ay - Ax < By - Bx) {
                     return -1;
                 }
-                if (Az + Ay > Bz + By) {
+                if (Ay - Ax > By - Bx) {
                     return 1;
                 }
-                if (Az + Ay == Bz + By){
+                if (Ay - Ax == By - Bx){
                     return 0;
                 }
-                break;
-            case hexDirections.SOUTH:
-                if (Ay < By) {
-                    return -1;
-                }
-                if (Ay > By) {
+            break;
+            case hexDirections.SOUTH: // good
+                if (Az - Ay < Bz - By) {
                     return 1;
                 }
-                if (Ay == By){
-                    return 0;
-                }
-                break;
-            case hexDirections.SOUTHWEST:
-                if (Ax < Bx) {
+                if (Az - Ay > Bz - By) {
                     return -1;
                 }
-                if (Ax > Bx) {
+                if (Az - Ay == Bz - By){
+                }
+                break;
+        
+            case hexDirections.SOUTHWEST: 
+                if (Ax - Az < Bx - Bz) {
+                    return -1;
+                }
+                if (Ax - Az > Bx - Bz) {
                     return 1;
                 }
-                if (Ax == Bx){
+                if (Ax - Az == Bx - Bz){
                     return 0;
                 }
                 break;

@@ -61,7 +61,7 @@ function entityToSprite(){
                         drawHex(dx, dy + offset - height, element.material);
                     }
                     else if(element.type == 'player'){
-                        drawSprite(element.texture, dx, dy + offset - element.height * (drawScale / 3), (7 + player.facing - cameraFocusBuffer.facing) % 6, frameCounter, 6, 8, 1, 1);
+                        drawSprite(element.texture, dx, dy + offset - element.height * (drawScale / 3) - (drawScale / 4), (player.facing ) % 6, frameCounter, 6, 8, 1, 1);
                     }
 
         }

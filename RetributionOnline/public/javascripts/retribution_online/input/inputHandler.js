@@ -82,42 +82,47 @@ function keyWhipserer() {
     }
     if (NWbuttonState){
         player.facing = hexDirections.NORTHWEST;
-        movePlayer(hexDirections.NORTHWEST);
+        movePlayer((5 + player.facing + cameraFacing) % 6);
         NWbuttonState = false;
     }
     if (NbuttonState){
         player.facing = hexDirections.NORTH;
-        movePlayer(hexDirections.NORTH);
+        movePlayer((5 + player.facing + cameraFacing) % 6);
         NbuttonState = false;
     }
     if (NEbuttonState){
         player.facing = hexDirections.NORTHEAST;
-        movePlayer(hexDirections.NORTHEAST);
+        movePlayer((5 + player.facing + cameraFacing) % 6);
         NEbuttonState = false;
     }
     if (SEbuttonState){
         player.facing = hexDirections.SOUTHEAST;
-        movePlayer(hexDirections.SOUTHEAST);
+        movePlayer((5 + player.facing + cameraFacing) % 6);
         SEbuttonState = false;
     }
     if (SbuttonState){        
         player.facing = hexDirections.SOUTH;
-        movePlayer(hexDirections.SOUTH);
+        movePlayer((5 + player.facing + cameraFacing) % 6);
         SbuttonState = false;
     }
     if (SWbuttonState){
         player.facing = hexDirections.SOUTHWEST;
-        movePlayer(hexDirections.SOUTHWEST);
+        movePlayer((5 + player.facing + cameraFacing) % 6);
         SWbuttonState = false;
     }
     if (RightbuttonState){
         console.log('Right');
-        cameraFacing++;
+        cameraFacing = (cameraFacing + 1) % 6;
+        player.facing = (player.facing - 1) % 6;
         RightbuttonState = false;
     }
     if (LeftbuttonState){
         console.log('Left');
-        cameraFacing--;
+        cameraFacing =  (cameraFacing - 1) % 6;
+        player.facing =  (player.facing + 1) % 6;
+        if (cameraFacing < 0){
+            cameraFacing = 5;
+        }
         LeftbuttonState = false;
     }
 }
