@@ -1,36 +1,28 @@
-//main.js is the main game loop
+/*
+LIST INPUTS AND OUTPUTS HERE??
+*/
 
+function main() {
+    //what do these do?
+    boardToHex(gameBoard, heightMapArray);
+    player.texture = monkSprite;
+    player.facing = hexDirections.SOUTH;
+    player.id = gameEntityArray.length;
+    gameEntityArray.push(player);
 
-boardToHex(gameBoard, heightMapArray);
-var player = new gameEntity(5, 5, 5, 0, 'player');
-player.texture = monkSprite;
-player.facing = hexDirections.SOUTH;
-player.id = gameEntityArray.length;
-gameEntityArray.push(player);
+    //core game loop
+    function game() {
+        var logMode = false;
+        logger('game()', 'game()', 'logic updating', logMode);
+        updateLogic();
 
+        if(fpsLimiter()) {
+            logger('game()', 'fpsLimiter()', 'frame updating', logMode);
+            updateCanvas();
+        }   
 
-// main game function
-function game() {
-    var logMode = false;
-    logger('game()', 'game()', 'An itteration of the game() function has begun', logMode);
-    
-    //update variables and objects to further the gameplay
-    updateLogic();
-    
-    //check to see if the screen needs updating (time based)
-    logger('game()', 'fpsLimiter()', 'check to see if the screen needs updating', logMode);
-    if(fpsLimiter()) {
-        logger('game()', 'fpsLimiter()', true, logMode);
+        requestAnimationFrame(game);
+    }
 
-        //draw the games graphics to the canvas
-        updateCanvas();
-    }   
-    
-    //main looper
-    requestAnimationFrame(game);
-    logger('game()', 'game()', 'An itteration of the game() function has ended', logMode);
+    game();
 }
-
-//invoke the main game loop
-
-game();
